@@ -1,24 +1,35 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+## CSC/ECE 517 - Object Oriented Design and Development
+# Program 2 - Ruby on Rails
 
-* Ruby version
+## WolfEvents Event Management System
+## Admin
 
-* System dependencies
+Admin is preconfigured with the following attributes:
+* Email : 
+* Name :	 
+* Password : 
 
-* Configuration
+Admin capabilities:
 
-* Database creation
+- [ ] Log in with an email and password
+- [ ] Edit profile (should not be able to update ID, email, and password).
+- [ ] Admin account cannot be deleted.
+- [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
+- [ ] List reviews written by a specific attendee (with name)
+- [ ] List reviews written for a specific event (with Event ID)
+- [ ] View all the attendees signed up on the event management system.
+- [ ] View all the events that are available on the system.
+- [ ] Create/view/edit/delete attendees.
+- [ ] Create/view/edit/delete events.
+- [ ] Create/view/edit/delete tickets.
+- [ ] Create/view/edit/delete reviews.
+- [ ] Create/view/edit/delete rooms.
+- [ ]  Admin should be able to search only available rooms in a particular time slot
 
-* Database initialization
+(If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
+Admin should also be able to book events like an attendee and attend them.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+---
