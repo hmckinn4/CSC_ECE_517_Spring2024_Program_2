@@ -1,5 +1,11 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: %i[ show edit update destroy ]
+  # Add before_action to authenticate and to verify that only attendees access.
+  before_action :authenticate_user!
+  before_action :attendee_valid?
+
+  def home
+    # Customize with relevant data for the admin dashboard.
+  end
 
   # GET /attendees or /attendees.json
   def index
@@ -58,6 +64,14 @@ class AttendeesController < ApplicationController
   end
 
   private
+
+  # Allow only registered attendees to access attendee homepage.
+  def attendee_valid?
+    unless current_user.is_a?(Attendee)
+      redirect_to root_path, alert: "Access is limited to registered attendees."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_attendee
       @attendee = Attendee.find(params[:id])

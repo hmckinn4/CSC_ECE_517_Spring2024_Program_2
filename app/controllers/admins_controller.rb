@@ -1,5 +1,12 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: %i[ show edit update destroy ]
+  # Ensure user is logged in and is an admin.
+  before_action :authenticate_user!
+  before_action :admin_valid?
+
+  # Home action for admin dashboard.
+  def home
+    # Customize with relevant data for the admin dashboard.
+  end
 
   # GET /admins or /admins.json
   def index
@@ -58,6 +65,11 @@ class AdminsController < ApplicationController
   end
 
   private
+  # Ensures that only the admin can access the administrator homepage.
+  def admin_valid?
+    unless current_user.is_a?(Admin)
+      redirect_to root_path, alert: "Denied: Only the admin can access the administrator homepage."
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_admin
       @admin = Admin.find(params[:id])
@@ -67,4 +79,5 @@ class AdminsController < ApplicationController
     def admin_params
       params.require(:admin).permit(:email, :password, :name, :phone_number, :address, :credit_card_info)
     end
+  end
 end
