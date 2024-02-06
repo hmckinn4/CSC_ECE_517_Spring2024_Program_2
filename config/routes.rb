@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :attendees
+  devise_for :admins
   resources :reviews
   resources :event_tickets
   resources :events
