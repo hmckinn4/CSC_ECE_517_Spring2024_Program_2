@@ -10,39 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_04_143748) do
-  create_table "admins", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "name"
-    t.string "phone_number"
-    t.text "address"
-    t.string "credit_card_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "attendees", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "name"
-    t.string "phone_number"
-    t.text "address"
-    t.string "credit_card_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2024_02_05_235337) do
   create_table "event_tickets", force: :cascade do |t|
-    t.integer "attendee_id", null: false
     t.integer "event_id", null: false
     t.integer "room_id", null: false
     t.string "confirmation_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attendee_id"], name: "index_event_tickets_on_attendee_id"
+    t.integer "user_id", null: false
     t.index ["event_id"], name: "index_event_tickets_on_event_id"
     t.index ["room_id"], name: "index_event_tickets_on_room_id"
+    t.index ["user_id"], name: "index_event_tickets_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -60,14 +38,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_04_143748) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "attendee_id", null: false
     t.integer "event_id", null: false
     t.integer "rating"
     t.text "feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attendee_id"], name: "index_reviews_on_attendee_id"
+    t.integer "user_id", null: false
     t.index ["event_id"], name: "index_reviews_on_event_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -77,10 +55,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_04_143748) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "event_tickets", "attendees"
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "event_tickets", "events"
   add_foreign_key "event_tickets", "rooms"
+  add_foreign_key "event_tickets", "users"
   add_foreign_key "events", "rooms"
-  add_foreign_key "reviews", "attendees"
   add_foreign_key "reviews", "events"
+  add_foreign_key "reviews", "users"
 end

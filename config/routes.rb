@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  #defines which controller action will handle requests to the root path
+  root to: "home#index"
   resources :reviews
   resources :event_tickets
   resources :events
