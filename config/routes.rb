@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'login/index'
   devise_for :attendees
   devise_for :admins
   resources :reviews
@@ -11,4 +12,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "login#index"
 end
