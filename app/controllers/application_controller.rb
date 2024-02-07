@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Determines the redirection path after sign-in based on the user's role.
-  def after_sign_in_path_for(user)
+  def handle_post_sign_in_redirect_for(user)
     # Checks if the signed-in user is an Admin.
     if user.is_a?(Admin)
       # Directs admins to the administrator homepage for administrative tasks.
