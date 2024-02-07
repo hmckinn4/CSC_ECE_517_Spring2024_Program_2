@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
+  before_action :registration_check, if: :devise_controller?
   protected
-  def add_user_specs
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:type, :name, :phone_number, :address, :credit_card_info])
+  def registration_check
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phone_number, :address, :credit_card_info])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone_number, :address, :credit_card_info])
   end
 
   # Determines the redirection path after sign-in based on the user's role.
