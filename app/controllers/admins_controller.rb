@@ -90,14 +90,14 @@ class AdminsController < ApplicationController
       redirect_to root_path, alert: "Denied: Only the admin can access the administrator homepage."
     end
     # Use callbacks to share common setup or constraints between actions.
-    def set_admin
-      @admin = Admin.find(params[:id])
-    end
+    # def set_admin
+    #   @admin = Admin.find(params[:id])
+    # end
 
     # Set the current user as the admin for editing and updating
-    #   def set_admin
-    #     @admin = current_user
-    #   end
+      def set_admin
+        @admin = current_user
+      end
 
     # Only allow a list of trusted parameters through.
     # Define allowed parameters for admin update

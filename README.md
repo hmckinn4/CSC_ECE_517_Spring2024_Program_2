@@ -56,5 +56,14 @@ Attendee capabilities:
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 
+### Bonus (Extra Credit)
+- [ ] Implement a search function for the admin to use. The input is the event name; the search result is a list of attendees who booked this event.
+- [ ] Implement a function to allow an attendee to buy a ticket for another attendee (the ticket can be viewed by both the user who pays for the ticket and the user who receives the ticket).
+
+Edited 
+Admin hompage
+rooms (room must exists)
+events
+
 --- 
 

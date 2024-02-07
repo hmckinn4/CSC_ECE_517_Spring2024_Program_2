@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   resources :rooms
 
   # Route to handle editing and updating admin profiles
-  resources :admins, only: [:edit, :update]
+  resources :admins, only: [:edit, :update] do
+    collection do
+      get :edit_profile, to: 'admins#edit', as: :edit_profile
+    end
+  end
 
   # Routes for admin and attendee homepages.
   get 'admin_homepage', to: 'admins#home', as: :admin_homepage
