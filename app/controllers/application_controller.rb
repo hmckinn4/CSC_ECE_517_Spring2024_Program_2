@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     # Checks if the signed-in user is an Admin.
     if user.is_a?(Admin)
       # Directs admins to the administrator homepage for administrative tasks.
-      admin_homepage_path
+      admin_homepage_path(id: user.id)
       # Checks if the signed-in user is an attendee.
     elsif user.is_a?(Attendee)
       # Leads attendees to their homepage where they can explore events.

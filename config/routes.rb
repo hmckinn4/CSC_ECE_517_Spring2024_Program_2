@@ -5,15 +5,25 @@ Rails.application.routes.draw do
   # Defines which controller action will handle requests to the root path.
   root to: "home#index"
 
-  # Resource routes for your models
+  # Resource routes for the models
   resources :reviews
   resources :event_tickets
   resources :events
   resources :rooms
 
+  # Route to handle editing and updating admin profiles
+  resources :admins, only: [:edit, :update]
+
   # Routes for admin and attendee homepages.
   get 'admin_homepage', to: 'admins#home', as: :admin_homepage
+  # get 'admins/:id/show', to: 'admins#home', as: :admin_homepage
   get 'attendee_homepage', to: 'attendees#home', as: :attendee_homepage
+
+  # Routes for admin homepage buttons
+  # Edit Profile
+
+
+
 
   # Might not need the resources :attendees and :admins lines since we're
   #   using STI and Devise for users.

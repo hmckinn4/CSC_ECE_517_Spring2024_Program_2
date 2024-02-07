@@ -1,10 +1,39 @@
-<h1>Editing admin</h1>
+<!-- app/views/admins/edit.html.erb -->
+<h1>Edit Profile</h1>
 
-<%= render "form", admin: @admin %>
+# Form for editing admin profile, submits to update action with PATCH method
+<%= form_for(@admin, url: admin_path(@admin), method: :patch) do |f| %>
+  <div class="field">
+    <%= f.label :name %> # Label for admin name field
+    <%= f.text_field :name %> # Text field for updating admin name
+  </div>
 
-<br>
+  <div class="field">
+    # Label for admin phone number field
+    <%= f.label :phone_number %>
+    # Text field for updating admin phone number
+    <%= f.text_field :phone_number %>
+  </div>
 
-<div>
-  <%= link_to "Show this admin", @admin %> |
-  <%= link_to "Back to admins", admins_path %>
-</div>
+  <div class="field">
+    # Label for admin address field
+    <%= f.label :address %>
+    # Text field to update admin address
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
+    # Label for admin credit card info field
+    <%= f.label :credit_card_info %>
+    # Text field for updating admin credit card info
+    <%= f.text_field :credit_card_info %>
+  </div>
+
+  <div class="actions">
+    # Submit button to update admin profile
+    <%= f.submit "Update Profile" %>
+  </div>
+<% end %>
+
+# Link to return to admin homepage
+<%= link_to "Return to Homepage", admin_homepage_path %>
