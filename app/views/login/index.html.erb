@@ -1,10 +1,33 @@
 <h1>Welcome to Wolf Events</h1>
 
-<br>
-<%= link_to 'Attendee login', new_attendee_session_path%>
-<br>
-<%= link_to 'Not yet an attendee?', new_attendee_path %>
+<% if admin_signed_in? %>
+<div>
+  <h2>Hello, <%= current_admin.email %></h2>
+  <%= link_to 'main page', admin_path(current_admin.id) %>
+  <br>
+  <br>
+  <%= button_to 'sign out', destroy_admin_session_path, method: :delete %>
+</div>
+<% end %>
 
-<br>
-<br>
-<%= link_to 'Login as an Admin', new_admin_session_path%>
+<% if attendee_signed_in? %>
+  <div>
+    <h2>Hello, <%= current_attendee.email %></h2>
+    <%= link_to 'main page', attendee_path(current_attendee.id) %>
+    <br>
+    <br>
+    <%= button_to 'sign out', destroy_attendee_session_path, method: :delete %>
+
+  </div>
+<% end %>
+
+<% if !admin_signed_in? && !attendee_signed_in? %>
+  <br>
+  <%= link_to 'Attendee login', new_attendee_session_path%>
+  <br>
+  <%= link_to 'Not yet an attendee?', new_attendee_path %>
+
+  <br>
+  <br>
+  <%= link_to 'Login as an Admin', new_admin_session_path%>
+<% end %>

@@ -2,6 +2,10 @@
 
 <%= render @attendee %>
 
+<% if attendee_signed_in? %>
+  <%= link_to "change password", edit_attendee_registration_path %>
+<% end %>
+
 <div>
   <%= link_to "Edit this attendee", edit_attendee_path(@attendee) %> |
   <%= link_to "Back to attendees", attendees_path %> | <%= button_to "log out", destroy_attendee_session_path, method: :delete%>

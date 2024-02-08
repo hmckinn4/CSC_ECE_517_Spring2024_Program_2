@@ -11,6 +11,16 @@
   </head>
 
   <body>
+  <% if admin_signed_in? %>
+    <div>
+      <%= link_to "main page", current_admin %>
+    </div>
+  <% end %>
+  <% if attendee_signed_in? %>
+    <div>
+      <%= link_to "main page", current_attendee %>
+    </div>
+  <% end %>
     <%= yield %>
   </body>
 </html>
