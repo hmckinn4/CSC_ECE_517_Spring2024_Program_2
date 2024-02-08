@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   # get 'admins/:id/show', to: 'admins#home', as: :admin_homepage
   get 'attendee_homepage', to: 'attendees#home', as: :attendee_homepage
 
+  get 'show_attendees', to: 'attendees#show', as: :attendees_show
+
   # Routes for admin homepage buttons
   # Edit Profile
 

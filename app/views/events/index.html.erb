@@ -2,23 +2,65 @@
 
 <h1>Events</h1>
 
+<!--The following links support necessary admin capabilities-->
+<%= link_to "Back to Admin Homepage", admin_homepage_path %>
+<p>
+  <%= link_to "Create event", new_event_path %>
+<p>
+<!--<p>-->
+  <%#= link_to "Show Events", events_path %>
+<!--<p>-->
+  <%#= link_to "Edit Events", edit_event_path(:id) %>
+<!--</p>-->
+<p>
+<!--</p>-->
+<%#= link_to "Show events", show_events %>
+<!--<p>-->
+
+<!-- app/views/events/index.html.erb -->
+
+<%= form_tag(events_path, method: :get) do %>
+  <div>
+    <%= label_tag(:category, "Category") %>
+    <%= select_tag(:category, options_from_collection_for_select(Event.select(:category).distinct.order(:category), :category, :category, include_blank: true), prompt: "Choose a category") %>
+  </div>
+  <div>
+    <%= label_tag(:event_id, "Event Name") %>
+    <%= collection_select(nil, :event_id, Event.order(:name), :id, :name, {include_blank: true, prompt: "Choose an event name"}) %>
+  </div>
+  <div>
+    <%= label_tag(:start_date) %>
+    <%= date_field_tag(:start_date) %>
+  </div>
+  <div>
+    <%= label_tag(:end_date) %>
+    <%= date_field_tag(:end_date) %>
+  </div>
+  <div>
+    <%= label_tag(:min_price) %>
+    <%= number_field_tag(:min_price) %>
+  </div>
+  <div>
+    <%= label_tag(:max_price) %>
+    <%= number_field_tag(:max_price) %>
+  </div>
+  <div>
+    <%= submit_tag("Filter") %>
+  </div>
+<% end %>
+
+
+
 <div id="events">
+  <!-- Display filtered events -->
   <% @events.each do |event| %>
     <%= render event %>
     <p>
-      <%= link_to "Show this event", event %>
+      <%= link_to "View, edit, or delete this event", event %>
     </p>
   <% end %>
 </div>
 
-<p>
-<%= link_to "New event", new_event_path %>
-<p>
-<%= link_to "Show Events", events_path %>
-<p>
-<%= link_to "Edit Events", edit_event_path(:id) %>
-</p>
-<%= link_to "Back to Admin Homepage", admin_homepage_path %>
-<p>
+
 
 

@@ -14,18 +14,21 @@ Admin is preconfigured with the following attributes:
 * Name: Tuffy
 * Password: 123456
 
+
+-Moving fwd: CRUD -> Filter -> function tasks 
+
 Admin capabilities:
 
 - [x] Log in with an email and password
-- [ ] Edit profile (should not be able to update ID, email, and password).
-- [ ] Admin account cannot be deleted.
+- [x] Edit profile (should not be able to update ID, email, and password).
+- [x] Admin account cannot be deleted.
 - [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
 - [ ] List reviews written by a specific attendee (with name)
 - [ ] List reviews written for a specific event (with Event ID)
 - [ ] View all the attendees signed up on the event management system.
-- [ ] View all the events that are available on the system.
+- [x] View all the events that are available on the system.
 - [ ] Create/view/edit/delete attendees.
-- [ ] Create/view/edit/delete events.
+- [x] Create/view/edit/delete events.
 - [ ] Create/view/edit/delete tickets.
 - [ ] Create/view/edit/delete reviews.
 - [ ] Create/view/edit/delete rooms.

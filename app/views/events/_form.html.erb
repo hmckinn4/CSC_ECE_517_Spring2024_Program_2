@@ -18,8 +18,13 @@
 
   <div>
     <%= form.label :room_id, style: "display: block" %>
-    <%= form.text_field :room_id %>
+    <%= form.collection_select :room_id, Room.all, :id, :address, {prompt: "Choose a room"} %>
   </div>
+
+<!--  <div>-->
+    <%#= form.label :room_id, style: "display: block" %>
+    <%#= form.text_field :room_id %>
+<!--  </div>-->
 
   <div>
     <%= form.label :category, style: "display: block" %>

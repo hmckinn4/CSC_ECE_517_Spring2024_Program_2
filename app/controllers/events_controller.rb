@@ -4,6 +4,11 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    # Adding the following for a filter
+    @events = @events.where(category: params[:category]) if params[:category].present?
+    @events = @events.where("name LIKE ?", "%#{params[:name]}%") if params[:name].present?
+    @events = @events.where("date >= ? AND date <= ?", params[:start_date], params[:end_date]) if params[:start_date].present? && params[:end_date].present?
+    @events = @events.where("price >= ? AND price <= ?", params[:min_price], params[:max_price]) if params[:min_price].present? && params[:max_price].present?
   end
 
   # GET /events/1 or /events/1.json

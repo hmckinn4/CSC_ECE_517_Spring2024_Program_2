@@ -4,36 +4,38 @@
 <!-- Form for editing admin profile, submits to update action with PATCH method-->
 <%= form_for(@admin, url: admin_path(@admin), method: :patch) do |f| %>
   <div class="field">
-    <%= f.label :name %> # Label for admin name field
-    <%= f.text_field :name %> # Text field for updating admin name
+<!--     Label for admin name field-->
+    <%= f.label :name %>
+<!--    Text field for updating admin name-->
+    <%= f.text_field :name %>
   </div>
 
   <div class="field">
 <!--Label for admin phone number field-->
     <%= f.label :phone_number %>
-    # Text field for updating admin phone number
+<!--     Text field for updating admin phone number-->
     <%= f.text_field :phone_number %>
   </div>
 
   <div class="field">
 <!--Label for admin address field-->
     <%= f.label :address %>
-    # Text field to update admin address
+<!--    Text field to update admin address-->
     <%= f.text_field :address %>
   </div>
 
   <div class="field">
 <!--Label for admin credit card info field-->
     <%= f.label :credit_card_info %>
-    # Text field for updating admin credit card info
+<!--    Text field for updating admin credit card info-->
     <%= f.text_field :credit_card_info %>
   </div>
 
   <div class="actions">
-    # Submit button to update admin profile
+<!--    Submit button to update admin profile-->
     <%= f.submit "Update Profile" %>
   </div>
 <% end %>
 
-# Link to return to admin homepage
+<!-- Link to return to admin homepage-->
 <%= link_to "Return to Homepage", admin_homepage_path %>
