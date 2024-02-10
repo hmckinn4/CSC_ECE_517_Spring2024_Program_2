@@ -2,6 +2,17 @@
 
 <h1>Events</h1>
 
+<div>
+  <h3>Filter:</h3>
+  <%= form_with url: events_url, method: :get do |form| %>
+    <%= form.check_box :upcoming, {}, "on", nil %>
+    <%= form.label :upcoming, "Only view upcoming events" %>
+    <%= form.submit "Apply" %>
+  <% end %>
+</div>
+
+<br><br>
+
 <div id="events">
   <% @events.each do |event| %>
     <%= render event %>

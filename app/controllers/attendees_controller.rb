@@ -25,8 +25,13 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to attendee_url(@attendee), notice: "Attendee was successfully created." }
-        format.json { render :show, status: :created, location: @attendee }
+        if admin_signed_in?
+          format.html { redirect_to attendees_path, notice: "Attendee was successfully created." }
+          format.json { render :show, status: :created, location: @attendee }
+        else
+          format.html { redirect_to attendee_url(@attendee), notice: "Attendee was successfully created." }
+          format.json { render :show, status: :created, location: @attendee }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }

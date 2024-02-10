@@ -13,7 +13,12 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="header">
-  <h1>Welcome, <%= @attendee.email %></h1>
+  <h1><%= @attendee.email %></h1>
+
+  <% if admin_signed_in? %>
+    <%= render @attendee %>>
+  <% end %>
+
   <div class="header-container">
     <%= link_to "Edit profile", edit_attendee_path(@attendee) %>
     <%= link_to "change password", edit_attendee_registration_path %>
@@ -35,5 +40,11 @@
 <div>
   <% if admin_signed_in? %>
     <%= link_to "Back to attendees", attendees_path %>
+  <% end %>
+</div>
+<div class = "event-link">
+  <% if attendee_signed_in? %>
+    <h2>Events</h2>
+    <%= link_to "view events", events_path %>
   <% end %>
 </div>
