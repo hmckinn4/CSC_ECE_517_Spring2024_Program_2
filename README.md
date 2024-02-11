@@ -40,11 +40,11 @@ Attendee capabilities:
 - [x] Edit their own profile (should not be able to update their ID).
 - [x] Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
 - [ ] View all available events in the system. Conditions apply:
-    - Only upcoming events are visible.
+    - Only upcoming events are visible. 
     - Only events which are not sold out are visible.
     - Filter events by category, date, and price (~ price range).
     - Search events by Event Name.
-- [ ] Book an event ticket.
+- [x] Book an event ticket.
 - [ ] Check their own event booking history, displaying at least the Event Name and Date.
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
 - [ ] Edit their own reviews.

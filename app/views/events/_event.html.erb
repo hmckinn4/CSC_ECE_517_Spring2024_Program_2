@@ -6,7 +6,7 @@
 
   <p>
     <strong>Room:</strong>
-    <%= event.room_id %>
+    <%= Room.find(event.room_id).address %>
   </p>
 
   <p>

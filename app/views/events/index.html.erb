@@ -17,9 +17,14 @@
   <% @events.each do |event| %>
     <%= render event %>
     <p>
-      <%= link_to "Show this event", event %>
+      <%= link_to "Book this event", event %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New event", new_event_path %>
+<% if admin_signed_in? %>
+  <div>
+    <%= link_to "New event", new_event_path %>
+  </div>
+<% end %>
+

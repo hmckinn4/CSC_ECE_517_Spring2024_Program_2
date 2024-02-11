@@ -1,5 +1,7 @@
 class EventTicketsController < ApplicationController
   before_action :set_event_ticket, only: %i[ show edit update destroy ]
+  before_action :user_login!
+
 
   # GET /event_tickets or /event_tickets.json
   def index
@@ -19,19 +21,32 @@ class EventTicketsController < ApplicationController
   def edit
   end
 
+  def get_current_user_id
+    if admin_signed_in?
+      current_admin.id
+    end
+    if attendee_signed_in?
+      current_attendee.id
+    end
+  end
+
   # POST /event_tickets or /event_tickets.json
   def create
-    @event_ticket = EventTicket.new(event_ticket_params)
+    print params
+    @event = Event.find(params[:format])
+    @event_ticket = EventTicket.new
+    @event_ticket.event_id = params[:format]
+    @event_ticket.room_id = @event.room_id
+    @event_ticket.attendee_id = get_current_user_id
+    @event_ticket.confirmation_number = SecureRandom.hex(15)
 
-    respond_to do |format|
-      if @event_ticket.save
-        format.html { redirect_to event_ticket_url(@event_ticket), notice: "Event ticket was successfully created." }
-        format.json { render :show, status: :created, location: @event_ticket }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @event_ticket.errors, status: :unprocessable_entity }
-      end
+    if @event_ticket.save
+      @event.minus_seats_left
+      redirect_to @event_ticket, notice: 'Ticket successfully booked.'
+    else
+      redirect_to @event, alert: 'Unable to book ticket.'
     end
+
   end
 
   # PATCH/PUT /event_tickets/1 or /event_tickets/1.json
@@ -58,6 +73,14 @@ class EventTicketsController < ApplicationController
   end
 
   private
+
+  def user_login!
+    unless admin_signed_in? or attendee_signed_in?
+      redirect_to root_path, alert: "Please login first"
+    end
+  end
+
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_event_ticket
       @event_ticket = EventTicket.find(params[:id])
@@ -65,6 +88,6 @@ class EventTicketsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_ticket_params
-      params.require(:event_ticket).permit(:attendee_id, :event_id, :room_id, :confirmation_number)
+      params.require(:event_ticket).permit
     end
 end
