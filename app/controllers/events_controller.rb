@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     @events = @events.filter_by_upcoming if params[:upcoming] == "on"
+    @events = @events.filter_by_availability if params[:available] == "on"
   end
 
   # GET /events/1 or /events/1.json

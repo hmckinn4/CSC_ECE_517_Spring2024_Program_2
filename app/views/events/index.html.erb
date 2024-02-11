@@ -5,8 +5,15 @@
 <div>
   <h3>Filter:</h3>
   <%= form_with url: events_url, method: :get do |form| %>
-    <%= form.check_box :upcoming, {}, "on", nil %>
-    <%= form.label :upcoming, "Only view upcoming events" %>
+    <div>
+      <%= form.check_box :upcoming, {}, "on", nil %>
+      <%= form.label :upcoming, "Only view upcoming events" %>
+    </div>
+    <div>
+      <%= form.check_box :available, {}, "on", nil %>
+      <%= form.label :available, "Only view the available events" %>
+    </div>
+
     <%= form.submit "Apply" %>
   <% end %>
 </div>
