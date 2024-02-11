@@ -64,12 +64,15 @@ class EventTicketsController < ApplicationController
 
   # DELETE /event_tickets/1 or /event_tickets/1.json
   def destroy
+    @event = @event_ticket.event
     @event_ticket.destroy
 
     respond_to do |format|
       format.html { redirect_to event_tickets_url, notice: "Event ticket was successfully destroyed." }
       format.json { head :no_content }
     end
+
+    @event.add_seats_left
   end
 
   private

@@ -62,6 +62,12 @@ class AttendeesController < ApplicationController
     end
   end
 
+  def booked_events
+    @attendee = Attendee.find(params[:id])
+    @events = @attendee.events
+    @event_tickets =@attendee.event_tickets
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attendee

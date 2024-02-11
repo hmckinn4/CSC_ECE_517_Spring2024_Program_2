@@ -5,4 +5,5 @@ class Attendee < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :event_tickets, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :events, through: :event_tickets
 end

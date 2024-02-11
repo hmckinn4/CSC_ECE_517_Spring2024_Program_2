@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root "login#index"
+
+  get 'attendees/:id/view_booked_events' => 'attendees#booked_events', :as => :booked_events
 end

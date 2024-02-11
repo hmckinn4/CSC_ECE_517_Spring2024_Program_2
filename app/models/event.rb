@@ -10,4 +10,9 @@ class Event < ApplicationRecord
     save
   end
 
+  def add_seats_left
+    self.seats_left += 1
+    save
+  end
+
 end

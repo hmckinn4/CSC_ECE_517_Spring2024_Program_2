@@ -1,0 +1,28 @@
+<h1>Your booked events</h1>
+
+<div id="booked_events">
+  <% @events.each do |event| %>
+    <p>
+      <strong>Event name: </strong>
+      <%= event.name %>
+    </p>
+    <p>
+      <strong>Event Date</strong>
+      <%= event.date %>
+    </p>
+    <p>
+      <strong>Start time:</strong>
+      <%= event.start_time.strftime("%H:%M") %>
+    </p>
+
+    <p>
+      <strong>End time:</strong>
+      <%= event.end_time.strftime("%H:%M") %>
+    </p>
+
+    <p>
+      <% event_ticket = EventTicket.find_by_event_id(event.id) %>
+      <%= link_to 'View ticket', event_ticket_path(event_ticket), method: :get %>
+    </p>
+  <% end %>
+</div>

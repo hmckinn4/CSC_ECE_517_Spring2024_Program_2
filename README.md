@@ -45,12 +45,12 @@ Attendee capabilities:
     - Filter events by category, date, and price (~ price range).
     - Search events by Event Name.
 - [x] Book an event ticket.
-- [ ] Check their own event booking history, displaying at least the Event Name and Date.
+- [x] Check their own event booking history, displaying at least the Event Name and Date.
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
 - [ ] Edit their own reviews.
 - [ ] List reviews written by a specific user (with the Email of the user).
 - [ ] List reviews written for a specific event (with Event Name).
-- [ ] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+- [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 

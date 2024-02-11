@@ -47,6 +47,6 @@
     <h2>Events</h2>
     <%= link_to "view events", events_path %>
     <h2>Tickets</h2>
-    <%= link_to "book an event", new_event_ticket_path %>
+    <%= link_to "Booked events", booked_events_path(@attendee) %>
   <% end %>
 </div>
