@@ -29,16 +29,17 @@ Admin capabilities:
 
 - [ ] Create/view/edit/delete events.
 
+* Almost done with this filter, just need to finalize the price range bit
 - [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
   (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
 
+* Tried this for a while, pretty difficult to implement, added some test cases
 - [ ] Admin should be able to search only available rooms in a particular time slot.
   (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
   Admin should also be able to book events like an attendee and attend them.
 
 - [ ] Create/view/edit/delete tickets.
-  (Right now you can do that, but its not really linked to event)
-  When creating event, tickets form should be created 
+  *Working on correlating a booked ticket to a user and an event as opposed to an arbitrary ticket
 
   When you click on Tickets, it should take you to event first, then corresponding view all
   tickets for that event
@@ -77,6 +78,8 @@ Attendee capabilities:
 ### Bonus (Extra Credit)
 - [ ] Implement a search function for the admin to use. The input is the event name; the search result is a list of attendees who booked this event.
 - [ ] Implement a function to allow an attendee to buy a ticket for another attendee (the ticket can be viewed by both the user who pays for the ticket and the user who receives the ticket).
+   Right now an admin can do this, but not attendee
+   Event ticket view > new event ticket 
 
 Edited
 Admin hompage

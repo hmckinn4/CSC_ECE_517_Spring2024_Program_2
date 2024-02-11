@@ -36,10 +36,21 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    # Initially pass all rooms, later to be filtered by JS
+    @available_rooms = Room.all
   end
 
   # GET /events/1/edit
   def edit
+    # For edit, we might want to calculate the available rooms based on the event's date and times
+    @available_rooms = Room.available_for(start: @event.start_time, end: @event.end_time)
+  end
+
+  def available_rooms
+    start_time = DateTime.parse("#{params[:date]} #{params[:start_time]}")
+    end_time = DateTime.parse("#{params[:date]} #{params[:end_time]}")
+    @available_rooms = Room.available_for(start: start_time, end: end_time)
+    render json: @available_rooms
   end
 
   # POST /events or /events.json

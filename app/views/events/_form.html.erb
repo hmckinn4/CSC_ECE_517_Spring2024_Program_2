@@ -17,15 +17,9 @@
   </div>
 
   <div>
-    <%= form.label :room_id, style: "display: block" %>
-    <%= form.collection_select :room_id, Room.all, :id, :address, {prompt: "Choose a room"} %>
-  </div>
-
-  <div>
     <%= form.label :category, style: "display: block" %>
     <%= form.select :category, options_for_select(['Concerts', 'Sports', 'Arts & Theatre', 'Miscellaneous/Family', 'Private']), {}, {class: "form-control"} %>
   </div>
-
 
   <div>
     <%= form.label :date, style: "display: block" %>
@@ -40,6 +34,11 @@
   <div>
     <%= form.label :end_time, style: "display: block" %>
     <%= form.time_field :end_time %>
+  </div>
+
+  <div>
+    <%= form.label :room_id, style: "display: block" %>
+    <%= form.collection_select :room_id, @available_rooms, :id, :address, {prompt: "Choose a room"} %>
   </div>
 
   <div>

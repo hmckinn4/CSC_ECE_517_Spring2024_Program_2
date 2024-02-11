@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :reviews
   resources :event_tickets
-  resources :events
+  resources :events do
+    get 'available_rooms', on: :collection
+  end
   resources :rooms
   resources :attendees
   resources :admins
