@@ -43,9 +43,9 @@ Admin capabilities:
 
   When you click on Tickets, it should take you to event first, then corresponding view all
   tickets for that event
-
-- [ ] Create/view/edit/delete reviews.
-- [ ] Create/view/edit/delete rooms.
+ 
+- [x] Create/view/edit/delete reviews.
+- [x] Create/view/edit/delete rooms.
 
 - [ ] Admin should be able to search only available rooms in a particular time slot.
   (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
@@ -68,6 +68,9 @@ Attendee capabilities:
 - [ ] Book an event ticket.
   (Corresponds to event and the notion of the last check)
 
+- [ ] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+  (important, in tandem with issues above.)
+
 - [ ] Check their own event booking history, displaying at least the Event Name and Date.
    Booked events button
    If event booked by attendee display Event name and date 
@@ -84,8 +87,7 @@ Attendee capabilities:
 - [ ] List reviews written for a specific event (with Event Name).
    See reviews for (dropdown of all events)
 
-- [ ] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
-  (important, in tandem with issues above.)
+
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 
