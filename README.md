@@ -19,15 +19,31 @@ Admin capabilities:
 - [x] Admin account cannot be deleted.
 
 - [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
+  (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
 
 - [ ] List reviews written by a specific attendee (with name)
 - [ ] List reviews written for a specific event (with Event ID)
 
 - [ ] View all the attendees signed up on the event management system.
+  (It sounds this implies view all attendees signed up for a specific event, confirm)
+
 - [ ] View all the events that are available on the system.
-- [ ] Create/view/edit/delete attendees.
+  (Confirm there is no difference between this and whats below)
+
+- [x] Create/view/edit/delete attendees.
+
 - [ ] Create/view/edit/delete events.
+  (Almost done, when creating events, it should automatically create tickets, instill confirmation numbers)
+  (Event ticket has_one confirmation number?)
+
 - [ ] Create/view/edit/delete tickets.
+  (Right now you can do that, but its not really linked to event)
+  When creating event, tickets form should be created 
+
+
+  When you click on Tickets, it should take you to event first, then corresponding view all
+  tickets for that event
+
 - [ ] Create/view/edit/delete reviews.
 - [ ] Create/view/edit/delete rooms.
 
@@ -48,13 +64,28 @@ Attendee capabilities:
     - Only events which are not sold out are visible.
     - Filter events by category, date, and price (~ price range).
     - Search events by Event Name.
+  
 - [ ] Book an event ticket.
+  (Corresponds to event and the notion of the last check)
+
 - [ ] Check their own event booking history, displaying at least the Event Name and Date.
+   Booked events button
+   If event booked by attendee display Event name and date 
+
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
+  (Should say, New review -> Choose event (backend should limit to events attended, else display
+   "No events attended to review")
+
 - [ ] Edit their own reviews.
 - [ ] List reviews written by a specific user (with the Email of the user).
+   Show all reviews (index)
+   Select this review (display email of user)
+
 - [ ] List reviews written for a specific event (with Event Name).
+   See reviews for (dropdown of all events)
+
 - [ ] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+  (important, in tandem with issues above.)
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 
