@@ -25,8 +25,13 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to attendee_url(@attendee), notice: "Attendee was successfully created." }
-        format.json { render :show, status: :created, location: @attendee }
+        if admin_signed_in?
+          format.html { redirect_to attendees_path, notice: "Attendee was successfully created." }
+          format.json { render :show, status: :created, location: @attendee }
+        else
+          format.html { redirect_to attendee_url(@attendee), notice: "Attendee was successfully created." }
+          format.json { render :show, status: :created, location: @attendee }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @attendee.errors, status: :unprocessable_entity }
@@ -55,6 +60,12 @@ class AttendeesController < ApplicationController
       format.html { redirect_to attendees_url, notice: "Attendee was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def booked_events
+    @attendee = Attendee.find(params[:id])
+    @events = @attendee.events
+    @event_tickets =@attendee.event_tickets
   end
 
   private

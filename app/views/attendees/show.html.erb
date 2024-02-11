@@ -1,14 +1,52 @@
+<style>
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .header-container {
+        display: flex;
+        gap: 10px
+    }
+</style>
+
 <p style="color: green"><%= notice %></p>
 
-<%= render @attendee %>
+<div class="header">
+  <h1><%= @attendee.email %></h1>
 
-<% if attendee_signed_in? %>
-  <%= link_to "change password", edit_attendee_registration_path %>
-<% end %>
+  <% if admin_signed_in? %>
+    <%= render @attendee %>>
+  <% end %>
+
+  <div class="header-container">
+    <%= link_to "Edit profile", edit_attendee_path(@attendee) %>
+    <%= link_to "change password", edit_attendee_registration_path %>
+    <% if attendee_signed_in? %>
+      <%= button_to "Log out", destroy_attendee_session_path, method: :delete %>
+      <%= button_to "delete your account", @attendee, method: :delete %>
+    <% end %>
+
+    <% if admin_signed_in? %>
+      <%= button_to "Destroy this attendee", @attendee, method: :delete %>
+    <% end %>
+
+  </div>
+</div>
+
+<br>
+
 
 <div>
-  <%= link_to "Edit this attendee", edit_attendee_path(@attendee) %> |
-  <%= link_to "Back to attendees", attendees_path %> | <%= button_to "log out", destroy_attendee_session_path, method: :delete%>
-
-  <%= button_to "Destroy this attendee", @attendee, method: :delete %>
+  <% if admin_signed_in? %>
+    <%= link_to "Back to attendees", attendees_path %>
+  <% end %>
+</div>
+<div class = "event-link">
+  <% if attendee_signed_in? %>
+    <h2>Events</h2>
+    <%= link_to "view events", events_path %>
+    <h2>Tickets</h2>
+    <%= link_to "Booked events", booked_events_path(@attendee) %>
+  <% end %>
 </div>

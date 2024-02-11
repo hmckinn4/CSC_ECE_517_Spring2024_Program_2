@@ -3,8 +3,10 @@
 <%= render @event_ticket %>
 
 <div>
-  <%= link_to "Edit this event ticket", edit_event_ticket_path(@event_ticket) %> |
-  <%= link_to "Back to event tickets", event_tickets_path %>
+  <% if admin_signed_in? %>
+    <%= link_to "Edit this event ticket", edit_event_ticket_path(@event_ticket) %> |
+    <%= link_to "Back to event tickets", event_tickets_path %>
+<% end %>
 
-  <%= button_to "Destroy this event ticket", @event_ticket, method: :delete %>
+  <%= button_to "Delete the reservation", @event_ticket, method: :delete %>
 </div>

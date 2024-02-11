@@ -1,9 +1,12 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
+
   # GET /events or /events.json
   def index
     @events = Event.all
+    @events = @events.filter_by_upcoming if params[:upcoming] == "on"
+    @events = @events.filter_by_availability if params[:available] == "on"
   end
 
   # GET /events/1 or /events/1.json
@@ -22,6 +25,9 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = Event.new(event_params)
+
+    room = Room.find_by(id: @event.room_id)
+    @event.seats_left = room.capacity
 
     respond_to do |format|
       if @event.save
@@ -65,6 +71,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :room_id, :category, :date, :start_time, :end_time, :ticket_price, :seats_left)
+      params.require(:event).permit(:name, :room_id, :category, :date, :start_time, :end_time, :ticket_price)
     end
 end
