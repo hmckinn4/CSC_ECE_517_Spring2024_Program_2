@@ -18,28 +18,27 @@ Admin capabilities:
 - [x] Edit profile (should not be able to update ID, email, and password).
 - [x] Admin account cannot be deleted.
 
-- [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
-  (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
-
 - [ ] List reviews written by a specific attendee (with name)
 - [ ] List reviews written for a specific event (with Event ID)
 
-- [ ] View all the attendees signed up on the event management system.
-  (It sounds this implies view all attendees signed up for a specific event, confirm)
+- [x] View all the attendees signed up on the event management system.
 
-- [ ] View all the events that are available on the system.
-  (Confirm there is no difference between this and whats below)
+- [x] View all the events that are available on the system.
 
 - [x] Create/view/edit/delete attendees.
 
 - [ ] Create/view/edit/delete events.
-  (Almost done, when creating events, it should automatically create tickets, instill confirmation numbers)
-  (Event ticket has_one confirmation number?)
+
+- [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
+  (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
+
+- [ ] Admin should be able to search only available rooms in a particular time slot.
+  (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
+  Admin should also be able to book events like an attendee and attend them.
 
 - [ ] Create/view/edit/delete tickets.
   (Right now you can do that, but its not really linked to event)
   When creating event, tickets form should be created 
-
 
   When you click on Tickets, it should take you to event first, then corresponding view all
   tickets for that event
@@ -47,9 +46,6 @@ Admin capabilities:
 - [x] Create/view/edit/delete reviews.
 - [x] Create/view/edit/delete rooms.
 
-- [ ] Admin should be able to search only available rooms in a particular time slot.
-  (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
-  Admin should also be able to book events like an attendee and attend them.
 
 ## Attendee
 
@@ -71,6 +67,9 @@ Attendee capabilities:
 - [ ] List reviews written by a specific user (with the Email of the user).
 - [ ] List reviews written for a specific event (with Event Name).
 - [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+  ( This not refers to "book an event ticket: no credit card is utilized and no
+    charge is made so it's kind of a loophole in reference to the rubric. Just
+    something we should confirm.)
 
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)

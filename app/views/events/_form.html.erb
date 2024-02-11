@@ -23,8 +23,9 @@
 
   <div>
     <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
+    <%= form.select :category, options_for_select(['Concerts', 'Sports', 'Arts & Theatre', 'Miscellaneous/Family', 'Private']), {}, {class: "form-control"} %>
   </div>
+
 
   <div>
     <%= form.label :date, style: "display: block" %>

@@ -4,10 +4,30 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
+    # Filter for events with available seats.
     @events = Event.all
-    @events = @events.filter_by_upcoming if params[:upcoming] == "on"
-    @events = @events.filter_by_availability if params[:available] == "on"
+    # Filter for upcoming events.
+    @events = @events.filter_by_upcoming if params[:upcoming] == 'on'
+    # Filter for events with available seats.
+    @events = @events.filter_by_availability if params[:available] == 'on'
+    # Filter by category if specified.
+    @events = @events.filter_by_category(params[:category]) if params[:category].present? && params[:category] != ''
+    # Filter by date if specified.
+    @events = @events.filter_by_date(params[:date]) if params[:date].present?
+    # Filter by price range if specified.
+    @events = @events.filter_by_price_range(params[:min_price], params[:max_price]) if params[:min_price].present? && params[:min_price] != '' && params[:max_price].present? && params[:max_price] != ''
+    # Filter by event name if specified.
+    @events = @events.filter_by_category(params[:category]) if params[:category].present? && params[:category] != ''
+    # Get unique event names for the filter dropdown.
+    @event_names = Event.pluck(:name).uniq
+    # Gather the dates from events.
+    @event_dates = Event.order(:date).pluck(:date).uniq
+
   end
+
+
+
+
 
   # GET /events/1 or /events/1.json
   def show
