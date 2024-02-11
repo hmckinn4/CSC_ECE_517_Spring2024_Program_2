@@ -72,9 +72,6 @@ Attendee capabilities:
 - [ ] List reviews written for a specific event (with Event Name).
 - [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
 
-(Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
-
-
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 
