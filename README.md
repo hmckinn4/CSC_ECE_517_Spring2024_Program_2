@@ -17,16 +17,36 @@ Admin capabilities:
 - [x] Log in with an email and password
 - [x] Edit profile (should not be able to update ID, email, and password).
 - [x] Admin account cannot be deleted.
+
 - [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
+  (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
+
 - [ ] List reviews written by a specific attendee (with name)
 - [ ] List reviews written for a specific event (with Event ID)
+
 - [ ] View all the attendees signed up on the event management system.
+  (It sounds this implies view all attendees signed up for a specific event, confirm)
+
 - [ ] View all the events that are available on the system.
-- [ ] Create/view/edit/delete attendees.
+  (Confirm there is no difference between this and whats below)
+
+- [x] Create/view/edit/delete attendees.
+
 - [ ] Create/view/edit/delete events.
+  (Almost done, when creating events, it should automatically create tickets, instill confirmation numbers)
+  (Event ticket has_one confirmation number?)
+
 - [ ] Create/view/edit/delete tickets.
-- [ ] Create/view/edit/delete reviews.
-- [ ] Create/view/edit/delete rooms.
+  (Right now you can do that, but its not really linked to event)
+  When creating event, tickets form should be created 
+
+
+  When you click on Tickets, it should take you to event first, then corresponding view all
+  tickets for that event
+ 
+- [x] Create/view/edit/delete reviews.
+- [x] Create/view/edit/delete rooms.
+
 - [ ] Admin should be able to search only available rooms in a particular time slot.
   (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
   Admin should also be able to book events like an attendee and attend them.
@@ -51,6 +71,7 @@ Attendee capabilities:
 - [ ] List reviews written by a specific user (with the Email of the user).
 - [ ] List reviews written for a specific event (with Event Name).
 - [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 
