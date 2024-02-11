@@ -42,12 +42,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_164045) do
   end
 
   create_table "event_tickets", force: :cascade do |t|
-    t.integer "attendee_id", null: false
+    t.integer "attendee_id"
+    t.integer "admin_id"
     t.integer "event_id", null: false
     t.integer "room_id", null: false
     t.string "confirmation_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_event_tickets_on_admin_id"
     t.index ["attendee_id"], name: "index_event_tickets_on_attendee_id"
     t.index ["event_id"], name: "index_event_tickets_on_event_id"
     t.index ["room_id"], name: "index_event_tickets_on_room_id"
@@ -85,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_164045) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "event_tickets", "admins"
   add_foreign_key "event_tickets", "attendees"
   add_foreign_key "event_tickets", "events"
   add_foreign_key "event_tickets", "rooms"
