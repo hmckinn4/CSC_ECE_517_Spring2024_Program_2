@@ -37,20 +37,20 @@ Attendee capabilities:
 
 - [x] Sign up for a new account with an email, name, and password
 - [x] Log in with an email and password.
-- [ ] Edit their own profile (should not be able to update their ID).
-- [ ] Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
+- [x] Edit their own profile (should not be able to update their ID).
+- [x] Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
 - [ ] View all available events in the system. Conditions apply:
-    - Only upcoming events are visible.
+    - Only upcoming events are visible. 
     - Only events which are not sold out are visible.
     - Filter events by category, date, and price (~ price range).
     - Search events by Event Name.
-- [ ] Book an event ticket.
-- [ ] Check their own event booking history, displaying at least the Event Name and Date.
+- [x] Book an event ticket.
+- [x] Check their own event booking history, displaying at least the Event Name and Date.
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
 - [ ] Edit their own reviews.
 - [ ] List reviews written by a specific user (with the Email of the user).
 - [ ] List reviews written for a specific event (with Event Name).
-- [ ] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+- [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
 

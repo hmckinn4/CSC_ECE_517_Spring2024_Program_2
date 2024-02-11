@@ -6,7 +6,7 @@
 
   <p>
     <strong>Room:</strong>
-    <%= event.room_id %>
+    <%= Room.find(event.room_id).address %>
   </p>
 
   <p>
@@ -21,12 +21,12 @@
 
   <p>
     <strong>Start time:</strong>
-    <%= event.start_time %>
+    <%= event.start_time.strftime("%H:%M") %>
   </p>
 
   <p>
     <strong>End time:</strong>
-    <%= event.end_time %>
+    <%= event.end_time.strftime("%H:%M") %>
   </p>
 
   <p>

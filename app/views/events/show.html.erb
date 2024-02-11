@@ -3,8 +3,15 @@
 <%= render @event %>
 
 <div>
-  <%= link_to "Edit this event", edit_event_path(@event) %> |
-  <%= link_to "Back to events", events_path %>
+  <% if admin_signed_in? %>
+    <%= link_to "Edit this event", edit_event_path(@event) %>
+    <%= button_to "Destroy this event", @event, method: :delete %>
+  <% end %>
+</div>
 
-  <%= button_to "Destroy this event", @event, method: :delete %>
+<div>
+  <%= button_to "Confirm", event_tickets_path(@event), method: :post  %>
+  <br>
+  <br>
+  <%= link_to "Back to events", events_path %>
 </div>
