@@ -17,4 +17,9 @@ Rails.application.routes.draw do
   root "login#index"
 
   get 'attendees/:id/view_booked_events' => 'attendees#booked_events', :as => :booked_events
+
+  # This route is for the search form to submit to
+  get 'admin/search_attendees', to: 'admin#search_attendees', as: 'search_attendees'
+
 end
+

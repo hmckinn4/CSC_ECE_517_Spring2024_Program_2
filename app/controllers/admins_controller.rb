@@ -9,6 +9,9 @@ class AdminsController < ApplicationController
 
   # GET /admins/1 or /admins/1.json
   def show
+    # Assuming @admin is set by set_admin callback
+    # This line provides the event names for the dropdown
+    @event_names = Event.order(:name).pluck(:name).uniq
   end
 
   # GET /admins/new
@@ -20,6 +23,24 @@ class AdminsController < ApplicationController
   def edit
   end
 
+  # Function that sear
+  def search_attendees
+    @event_names = Event.order(:name).pluck(:name).uniq
+    if params[:event_name].present?
+      # Find the event by name
+      event = Event.find_by(name: params[:event_name])
+      if event
+        # Get all attendees for this event
+        @attendees = event.attendees_ids
+      else
+        flash[:alert] = "Event not found"
+        @attendees = []
+      end
+    else
+      flash[:alert] = "Please enter an event name"
+      @attendees = []
+    end
+  end
   # POST /admins or /admins.json
   def create
     @admin = Admin.new(admin_params)
