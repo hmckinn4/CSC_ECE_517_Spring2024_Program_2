@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     # Filter by price range if specified.
     @events = @events.filter_by_price_range(params[:min_price], params[:max_price]) if params[:min_price].present? && params[:min_price] != '' && params[:max_price].present? && params[:max_price] != ''
     # Filter by event name if specified.
-    @events = @events.filter_by_category(params[:category]) if params[:category].present? && params[:category] != ''
+    @events = @events.filter_by_name(params[:name]) if params[:name].present? && params[:name] != ''
     # Get unique event names for the filter dropdown.
     @event_names = Event.pluck(:name).uniq
     # Gather the dates from events.

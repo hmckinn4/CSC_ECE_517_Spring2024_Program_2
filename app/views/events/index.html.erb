@@ -39,6 +39,11 @@
     <%#= form.label :name, "Event Name:", style: "display: block" %>
     <%#= form.select :name, options_for_select(['All'] + @event_names.map { |name| [name, name] }), {}, {class: "form-control"} %>
 
+    <p style="font-style: italic;">
+      For the price range filter to work,
+      you MUST enter a min and max price.
+    </p>
+
     <%= form.label :min_price, "Minimum Price:", style: "display: block" %>
     <%= form.number_field :min_price, step: 1, class: "form-control" %>
 

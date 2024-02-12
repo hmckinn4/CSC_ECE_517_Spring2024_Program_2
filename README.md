@@ -27,10 +27,12 @@ Admin capabilities:
 
 - [x] Create/view/edit/delete attendees.
 
-- [ ] Create/view/edit/delete events.
+- [x] Create/view/edit/delete events.
+* We met the criteria, only thing that would robustify the system, (not on the rubric)
+* is to add an "are you sure, if you delete this event it and all associated
+* reviews and tickets will be deleted as well" message before deleting
 
-* Almost done with this filter, just need to finalize the price range bit
-- [ ] List events by a specific category, date, price (~ price range to be precise), and event name.
+- [x] List events by a specific category, date, price (~ price range to be precise), and event name.
   (Event category (Concerts, Sports, Arts & Theatre, Miscellaneous/Family – Private))
 
 * Tried this for a while, pretty difficult to implement, added some test cases
