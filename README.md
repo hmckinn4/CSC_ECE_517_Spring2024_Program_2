@@ -58,7 +58,7 @@ Attendee capabilities:
 - [x] Log in with an email and password.
 - [x] Edit their own profile (should not be able to update their ID).
 - [x] Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
-- [ ] View all available events in the system. Conditions apply:
+- [x] View all available events in the system. Conditions apply:
     - Only upcoming events are visible. 
     - Only events which are not sold out are visible.
     - Filter events by category, date, and price (~ price range).
