@@ -46,18 +46,25 @@ class EventTicketsController < ApplicationController
       @event_ticket.event_id = params[:format]
       @event_ticket.room_id = @event.room_id
       if attendee_signed_in?
-        @event_ticket.attendee_id = get_current_user_id
+        @event_ticket.attendee_id = current_attendee.id
       elsif admin_signed_in?
-        @event_ticket.admin_id = get_current_user_id
+        @event_ticket.admin_id = current_admin.id
+        @event_ticket.attendee_id = nil
       end
       @event_ticket.confirmation_number = SecureRandom.hex(15)
     end
-
+    print("Look here!!!!!!!!!\n\n")
+    print("admin id\n")
+    print(@event_ticket.admin_id, "\n")
+    print(@event_ticket.room_id, "\n")
+    print(@event_ticket.event_id, "\n")
+    print(@event_ticket.confirmation_number, "\n")
 
     if @event_ticket.save
       @event.minus_seats_left
       redirect_to @event_ticket, notice: 'Ticket successfully booked.'
     else
+      Rails.logger.debug @event_ticket.errors.full_messages
       redirect_to @event, alert: 'Unable to book ticket.'
     end
 
