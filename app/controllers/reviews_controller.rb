@@ -19,11 +19,16 @@ class ReviewsController < ApplicationController
 
   # GET /reviews/1 or /reviews/1.json
   def show
+    @review = Review.find(params[:id])
+    # This makes the attendee  accessible via @review.attendee.name
+    # so we see that instead of the id.
   end
 
   # GET /reviews/new
   def new
     @review = Review.new
+    # If the current user is an attendee, set the attendee_id to their id
+    @review.attendee_id = current_attendee.id if attendee_signed_in?
   end
 
   # GET /reviews/1/edit
@@ -33,7 +38,8 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
-
+    # For attendees, force the attendee_id to be the current attendee's id
+    @review.attendee_id = current_attendee.id if attendee_signed_in?
     respond_to do |format|
       if @review.save
         format.html { redirect_to review_url(@review), notice: "Review was successfully created." }
@@ -75,7 +81,12 @@ class ReviewsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def review_params
+  def review_params
+    if admin_signed_in?
       params.require(:review).permit(:attendee_id, :event_id, :rating, :feedback)
+    elsif attendee_signed_in?
+      params.require(:review).permit(:event_id, :rating, :feedback)
     end
+  end
+
 end

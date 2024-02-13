@@ -11,12 +11,24 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :attendee_id, "Attendee:", style: "display: block" %>
-    <%= form.collection_select :attendee_id, Attendee.all, :id, :name, { prompt: "Select an Attendee" }, { class: "form-control" } %>
-  </div>
+  <% if admin_signed_in? %>
+    <!-- Admin can select any attendee -->
+    <div>
+      <%= form.label :attendee_id, style: "display: block" %>
+      <%= form.collection_select :attendee_id, Attendee.all, :id, :name, {}, { class: "form-control" } %>
+    </div>
+  <% elsif attendee_signed_in? %>
+    <!-- Attendee can only create a review for themselves -->
+    <div>
+      <%= form.hidden_field :attendee_id, value: current_attendee.id %>
+      <p>
+        Review by: <%= current_attendee.name %>
+      </p>
+    </div>
+  <% end %>
 
   <div>
+    <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
     <%= form.label :event_id, "Event:", style: "display: block" %>
     <%= form.collection_select :event_id, Event.all, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
   </div>

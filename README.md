@@ -68,6 +68,9 @@ Attendee capabilities:
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
 - [ ] Edit their own reviews.
 - [ ] List reviews written by a specific user (with the Email of the user).
+* Filter done, works for admin, however, email not displayed. Instructions allude to admin having
+* only name while attendee showing name and email.
+
 - [x] List reviews written for a specific event (with Event Name).
 - [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
   ( This not refers to "book an event ticket: no credit card is utilized and no
