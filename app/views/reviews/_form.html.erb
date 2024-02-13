@@ -30,7 +30,7 @@
   <div>
     <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
     <%= form.label :event_id, "Event:", style: "display: block" %>
-    <%= form.collection_select :event_id, Event.all, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
+    <%= form.collection_select :event_id,  current_attendee.events.where('date < ? OR (date = ? AND end_time < ?)', Date.today, Date.today, Time.zone.now).distinct, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
   </div>
 
   <div>

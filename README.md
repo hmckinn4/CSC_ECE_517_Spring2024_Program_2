@@ -65,7 +65,7 @@ Attendee capabilities:
     - Search events by Event Name.
 - [x] Book an event ticket.
 - [x] Check their own event booking history, displaying at least the Event Name and Date.
-- [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
+- [x] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
 - [x] Edit their own reviews.
 
 - [x] List reviews written by a specific user (with the Email of the user).
