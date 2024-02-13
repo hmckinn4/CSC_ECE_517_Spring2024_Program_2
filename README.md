@@ -38,7 +38,7 @@ Admin capabilities:
 * Tried this for a while, pretty difficult to implement, added some test cases
 - [ ] Admin should be able to search only available rooms in a particular time slot.
   (If a room is already booked, that should not be visible for the admin as part of his/her event creation during the time slot when the room is booked)
-- [ ] Admin should also be able to book events like an attendee and attend them.
+- [x] Admin should also be able to book events like an attendee and attend them.
 
 - [x] Create/view/edit/delete tickets.
   *Working on correlating a booked ticket to a user and an event as opposed to an arbitrary ticket
