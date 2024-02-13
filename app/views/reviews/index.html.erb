@@ -12,7 +12,11 @@
   <div>
     <%= form.label :attendee_id, "Attendee:", style: "display: block" %>
     <!-- Collection select to list all attendees by name -->
-    <%= form.collection_select :attendee_id, Attendee.all, :id, :name, include_blank: "Select an Attendee" %>
+    <% if admin_signed_in? %>
+      <%= form.collection_select :attendee_id, Attendee.all, :id, :name, include_blank: "Select an Attendee" %>
+    <% else %>
+      <%= form.collection_select :attendee_id, Attendee.all, :id, :email, include_blank: "Select an Attendee" %>
+    <% end %>
   </div>
 
   <!-- Dropdown to select an event for filtering -->
@@ -31,7 +35,11 @@
   <% @reviews.each do |review| %>
     <div>
       <!-- Display the name of the attendee  -->
-      <strong>Attendee:</strong> <%= review.attendee.name %><br>
+      <% if attendee_signed_in? %>
+        <strong>Attendee:</strong> <%= review.attendee.email %><br>
+      <% elsif admin_signed_in? %>
+        <strong>Attendee:</strong> <%= review.attendee.name %><br>
+      <% end %>
       <!-- Display the name of the event  -->
       <strong>Event:</strong> <%= review.event.name %><br>
       <!-- Display the rating -->

@@ -66,8 +66,9 @@ Attendee capabilities:
 - [x] Book an event ticket.
 - [x] Check their own event booking history, displaying at least the Event Name and Date.
 - [ ] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
-- [ ] Edit their own reviews.
-- [ ] List reviews written by a specific user (with the Email of the user).
+- [x] Edit their own reviews.
+
+- [x] List reviews written by a specific user (with the Email of the user).
 * Filter done, works for admin, however, email not displayed. Instructions allude to admin having
 * only name while attendee showing name and email.
 
@@ -82,9 +83,8 @@ Attendee capabilities:
 
 ### Bonus (Extra Credit)
 - [ ] Implement a search function for the admin to use. The input is the event name; the search result is a list of attendees who booked this event.
-- [ ] Implement a function to allow an attendee to buy a ticket for another attendee (the ticket can be viewed by both the user who pays for the ticket and the user who receives the ticket).
+- [x] Implement a function to allow an attendee to buy a ticket for another attendee (the ticket can be viewed by both the user who pays for the ticket and the user who receives the ticket).
    Right now an admin can do this, but not attendee
-   Event ticket view > new event ticket 
 
 Edited
 Admin hompage

@@ -48,6 +48,7 @@
     <%= link_to "view events", events_path %>
     <h2>Tickets</h2>
     <%= link_to "Booked events", booked_events_path(@attendee) %>
+    <%= link_to "Buy tickets for others", new_event_ticket_path %>
     <h2>Reviews</h2>
     <%= link_to "manage reviews", reviews_path %>
     <!--  Need to edit this so attendee can only MAKE AND MANAGE a review on behalf of themself.
