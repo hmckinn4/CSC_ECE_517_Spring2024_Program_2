@@ -5,13 +5,19 @@
 <div>
   <% if admin_signed_in? %>
     <%= link_to "Edit this event", edit_event_path(@event) %>
-    <%= button_to "Destroy this event", @event, method: :delete %>
+    <p>
+      <%= button_to "Destroy this event", @event, method: :delete %>
+    <p>
+      <%= button_to "Booking form (self or attendee)", event_tickets_path(@event), method: :post  %>
+<% end %>
+</div>
+<br>
+<div>
+  <% if attendee_signed_in? %>
+  <%= button_to "Book this event", event_tickets_path(@event), method: :post  %>
   <% end %>
 </div>
-
+<br>
 <div>
-  <%= button_to "Book this event", event_tickets_path(@event), method: :post  %>
-  <br>
-  <br>
   <%= link_to "Back to events", events_path %>
 </div>

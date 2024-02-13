@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   get 'attendees/:id/view_booked_events' => 'attendees#booked_events', :as => :booked_events
 
-  # This route is for the search form to submit to
+  # Route for admin to search for attendees by event name. This maps a GET request to the search_attendees action in the AdminsController.
   get 'admin/search_attendees', to: 'admin#search_attendees', as: 'search_attendees'
 
 end

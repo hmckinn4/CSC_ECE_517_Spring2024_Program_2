@@ -1,22 +1,21 @@
 <div id="<%= dom_id event_ticket %>">
   <p>
     <strong>Attendee:</strong>
-    <%= Attendee.find(event_ticket.attendee_id).name %>
+    <%= event_ticket.attendee.name %>
   </p>
 
   <p>
     <strong>Event:</strong>
-    <%= Event.find(event_ticket.event_id).name %>
+    <%= event_ticket.event.name %>
   </p>
 
   <p>
     <strong>Room:</strong>
-    <%= Room.find(event_ticket.room_id).address %>
+    <%= event_ticket.room.address %>
   </p>
 
   <p>
     <strong>Confirmation number:</strong>
     <%= event_ticket.confirmation_number %>
   </p>
-
 </div>

@@ -2,6 +2,7 @@
 
 <%= render @event_ticket %>
 
+
 <div>
   <% if admin_signed_in? %>
     <%= link_to "Edit this event ticket", edit_event_ticket_path(@event_ticket) %> |

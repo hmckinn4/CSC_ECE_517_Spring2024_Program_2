@@ -34,16 +34,22 @@
 </div>
 
 <!--Filter attendees by event, EXTRA CREDIT -->
-<p style="font-weight: bold;">View booked attendees by event:</p>
 
-<!-- This section provides a form for admins to filter and view attendees by event.
-     The form submits a GET request to 'search_attendees_path', which is defined in routes.rb.
-     The 'event_name' dropdown is populated with event names from the '@event_names' variable.
-     Upon submission, the selected event's name is sent to the 'search_attendees' action. -->
+<!-- This form allows the admin to select an event from a dropdown and
+ search for all attendees that have booked tickets for that event.
+ The form submits a GET request to the 'search_attendees_path'
+ which is handled by the 'search_attendees' action in the AdminsController. -->
+<p style="font-weight: bold;">View booked attendees by event:</p>
 
 <%= form_with(url: search_attendees_path, method: :get) do |form| %>
   <%= form.label :event_name, 'Event Name:' %>
+  <!-- Dropdown for selecting an event name.
+  The options are dynamically generated from the @event_names instance variable
+  which should be set in the AdminsController#show action. -->
   <%= form.select :event_name, options_for_select([['Select an event name', '']] + @event_names.map { |name| [name, name] }), {}, {class: "form-control"} %>
+  <!-- Submission button for the form.
+  When clicked, the selected event name is sent to the server
+  to retrieve the corresponding attendees. -->
   <%= form.submit 'Search', class: "btn btn-primary" %>
 <% end %>
 
@@ -51,6 +57,7 @@
   <h2>Tickets</h2>
   <%= link_to "manage tickets", event_tickets_path %>
   <%= link_to "add new ticket", new_event_ticket_path %>
+  <%= link_to "book ticket for attendee", event_tickets_path %>
 </div>
 
 <div class = "review-link">
