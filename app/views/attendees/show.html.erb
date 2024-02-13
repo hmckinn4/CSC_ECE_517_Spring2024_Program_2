@@ -48,5 +48,13 @@
     <%= link_to "view events", events_path %>
     <h2>Tickets</h2>
     <%= link_to "Booked events", booked_events_path(@attendee) %>
+    <h2>Reviews</h2>
+    <%= link_to "manage reviews", reviews_path %>
+    <!--  Need to edit this so attendee can only MAKE AND MANAGE a review on behalf of themself.
+      This is similar but opposite functionality issue to ticket booking/ creation
+      on the admin side; right now you can only book a ticket for yourself,
+      where as with reviews you can choose whomever to book a review for. -->
+    <%= link_to "add new review", new_review_path %>
+    </div>
   <% end %>
 </div>

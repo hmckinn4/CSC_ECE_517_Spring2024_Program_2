@@ -1,14 +1,48 @@
+<!-- Display any flash messages -->
 <p style="color: green"><%= notice %></p>
 
+<!-- Page title -->
 <h1>Reviews</h1>
 
+<!-- Filter form to filter reviews by specific attendee or event -->
+<%= form_with url: reviews_url, method: :get do |form| %>
+  <h3>Filter:</h3>
+
+  <!-- Dropdown to select an attendee for filtering -->
+  <div>
+    <%= form.label :attendee_id, "Attendee:", style: "display: block" %>
+    <!-- Collection select to list all attendees by name -->
+    <%= form.collection_select :attendee_id, Attendee.all, :id, :name, include_blank: "Select an Attendee" %>
+  </div>
+
+  <!-- Dropdown to select an event for filtering -->
+  <div>
+    <%= form.label :event_id, "Event:", style: "display: block" %>
+    <!-- Collection select will list all events by name -->
+    <%= form.collection_select :event_id, Event.all, :id, :name, include_blank: "Select an Event" %>
+  </div>
+
+  <!-- Submit button -->
+  <%= form.submit "Filter Reviews", class: "btn btn-primary" %>
+<% end %>
+
+<!-- List of reviews -->
 <div id="reviews">
   <% @reviews.each do |review| %>
-    <%= render review %>
-    <p>
+    <div>
+      <!-- Display the name of the attendee  -->
+      <strong>Attendee:</strong> <%= review.attendee.name %><br>
+      <!-- Display the name of the event  -->
+      <strong>Event:</strong> <%= review.event.name %><br>
+      <!-- Display the rating -->
+      <strong>Rating:</strong> <%= review.rating %><br>
+      <!-- Display the feedback -->
+      <strong>Feedback:</strong> <%= review.feedback %><br>
+      <!-- Link to the individual review page -->
       <%= link_to "Show this review", review %>
-    </p>
+    </div>
   <% end %>
 </div>
 
+<!-- Link to create a new review -->
 <%= link_to "New review", new_review_path %>

@@ -18,8 +18,8 @@ Admin capabilities:
 - [x] Edit profile (should not be able to update ID, email, and password).
 - [x] Admin account cannot be deleted.
 
-- [ ] List reviews written by a specific attendee (with name)
-- [ ] List reviews written for a specific event (with Event ID)
+- [x] List reviews written by a specific attendee (with name)
+- [x] List reviews written for a specific event (with Event ID)
 
 - [x] View all the attendees signed up on the event management system.
 

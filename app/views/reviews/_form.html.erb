@@ -12,26 +12,26 @@
   <% end %>
 
   <div>
-    <%= form.label :attendee_id, style: "display: block" %>
-    <%= form.text_field :attendee_id %>
+    <%= form.label :attendee_id, "Attendee:", style: "display: block" %>
+    <%= form.collection_select :attendee_id, Attendee.all, :id, :name, { prompt: "Select an Attendee" }, { class: "form-control" } %>
   </div>
 
   <div>
-    <%= form.label :event_id, style: "display: block" %>
-    <%= form.text_field :event_id %>
+    <%= form.label :event_id, "Event:", style: "display: block" %>
+    <%= form.collection_select :event_id, Event.all, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating %>
+    <%= form.number_field :rating, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :feedback, style: "display: block" %>
-    <%= form.text_area :feedback %>
+    <%= form.text_area :feedback, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -3,7 +3,18 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
+    # Start with all reviews
     @reviews = Review.all
+
+    # If an attendee ID is passed in the params, filter reviews by that attendee
+    if params[:attendee_id].present?
+      @reviews = @reviews.where(attendee_id: params[:attendee_id])
+    end
+
+    # If an event ID is passed in the params, filter reviews by that event
+    if params[:event_id].present?
+      @reviews = @reviews.where(event_id: params[:event_id])
+    end
   end
 
   # GET /reviews/1 or /reviews/1.json
