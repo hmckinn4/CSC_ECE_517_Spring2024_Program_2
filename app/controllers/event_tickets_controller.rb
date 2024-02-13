@@ -32,18 +32,27 @@ class EventTicketsController < ApplicationController
 
   # POST /event_tickets or /event_tickets.json
   def create
-    # print params
-    @event = Event.find(params[:format])
-    @event_ticket = EventTicket.new
-    @event_ticket.event_id = params[:format]
-    @event_ticket.room_id = @event.room_id
-    if attendee_signed_in?
-      @event_ticket.attendee_id = get_current_user_id
-    elsif admin_signed_in?
-      @event_ticket.admin_id = get_current_user_id
+
+    if params[:event_ticket].present?
+      @event_ticket = EventTicket.new
+      @event_ticket.event_id = params[:event_ticket][:event_id]
+      @event = Event.find(params[:event_ticket][:event_id])
+      @event_ticket.attendee_id = params[:event_ticket][:attendee_id]
+      @event_ticket.confirmation_number = params[:event_ticket][:confirmation_number]
+      @event_ticket.room_id = @event.room_id
+    else
+      @event_ticket = EventTicket.new
+      @event = Event.find(params[:format])
+      @event_ticket.event_id = params[:format]
+      @event_ticket.room_id = @event.room_id
+      if attendee_signed_in?
+        @event_ticket.attendee_id = get_current_user_id
+      elsif admin_signed_in?
+        @event_ticket.admin_id = get_current_user_id
+      end
+      @event_ticket.confirmation_number = SecureRandom.hex(15)
     end
 
-    @event_ticket.confirmation_number = SecureRandom.hex(15)
 
     if @event_ticket.save
       @event.minus_seats_left
