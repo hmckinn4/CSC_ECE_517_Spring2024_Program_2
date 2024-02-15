@@ -10,15 +10,14 @@
       </ul>
     </div>
   <% end %>
-
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+    <%= form.label :email, style: "display: block"%>
+    <%= form.text_field :email, class: "uneditable-input", :disabled => admin.persisted? %>
   </div>
 
   <div>
     <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
+    <%= form.text_field :password, class: "uneditable-input", :disabled => admin.persisted? %>
   </div>
 
   <div>

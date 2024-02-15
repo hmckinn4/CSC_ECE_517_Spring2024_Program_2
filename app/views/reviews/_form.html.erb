@@ -11,27 +11,39 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :attendee_id, style: "display: block" %>
-    <%= form.text_field :attendee_id %>
-  </div>
+  <% if admin_signed_in? %>
+    <!-- Admin can select any attendee -->
+    <div>
+      <%= form.label :attendee_id, style: "display: block" %>
+      <%= form.collection_select :attendee_id, Attendee.all, :id, :name, {}, { class: "form-control" } %>
+    </div>
+  <% elsif attendee_signed_in? %>
+    <!-- Attendee can only create a review for themselves -->
+    <div>
+      <%= form.hidden_field :attendee_id, value: current_attendee.id %>
+      <p>
+        Review by: <%= current_attendee.name %>
+      </p>
+    </div>
+  <% end %>
 
   <div>
-    <%= form.label :event_id, style: "display: block" %>
-    <%= form.text_field :event_id %>
+    <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
+    <%= form.label :event_id, "Event:", style: "display: block" %>
+    <%= form.collection_select :event_id,  current_attendee.events.where('date < ? OR (date = ? AND end_time < ?)', Date.today, Date.today, Time.zone.now).distinct, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
   </div>
 
   <div>
     <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating %>
+    <%= form.number_field :rating, class: "form-control" %>
   </div>
 
   <div>
     <%= form.label :feedback, style: "display: block" %>
-    <%= form.text_area :feedback %>
+    <%= form.text_area :feedback, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

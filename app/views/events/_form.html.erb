@@ -17,41 +17,44 @@
   </div>
 
   <div>
-    <%= form.label :room_id, style: "display: block" %>
-    <%= form.text_field :room_id %>
-  </div>
-
-  <div>
     <%= form.label :category, style: "display: block" %>
-    <%= form.text_field :category %>
+    <%= form.select :category, options_for_select(['Concerts', 'Sports', 'Arts & Theatre', 'Miscellaneous/Family', 'Private']), {}, {class: "form-control"} %>
   </div>
 
   <div>
     <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
+    <%= form.date_field :date, value: session[:date] || @event.date %>
   </div>
 
   <div>
     <%= form.label :start_time, style: "display: block" %>
-    <%= form.time_field :start_time %>
+    <%= form.time_field :start_time, value: session[:start_time] || @event.start_time %>
   </div>
 
   <div>
     <%= form.label :end_time, style: "display: block" %>
-    <%= form.time_field :end_time %>
+    <%= form.time_field :end_time, value: session[:end_time] || @event.end_time %>
   </div>
+
+  <% if @available_rooms.present? %>
+    <div>
+      <%= form.label :room_id, "Select Available Room", style: "display: block" %>
+      <%= form.collection_select :room_id, @available_rooms, :id, :address, include_blank: true %>
+    </div>
+  <% end %>
 
   <div>
     <%= form.label :ticket_price, style: "display: block" %>
     <%= form.text_field :ticket_price %>
   </div>
 
-  <div>
-    <%= form.label :seats_left, style: "display: block" %>
-    <%= form.number_field :seats_left %>
-  </div>
+<!--  <div>-->
+    <%#= form.label :seats_left, style: "display: block" %>
+    <%#= form.number_field :seats_left %>
+<!--  </div>-->
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Check Available Rooms", name: 'check_rooms_edit' %>
+    <%= form.submit "Update Event", name: 'update_event', id: 'update-event-form'%>
   </div>
 <% end %>

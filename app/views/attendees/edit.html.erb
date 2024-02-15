@@ -4,7 +4,17 @@
 
 <br>
 
-<div>
-  <%= link_to "Show this attendee", @attendee %> |
-  <%= link_to "Back to attendees", attendees_path %>
-</div>
+<% if admin_signed_in? %>
+  <div>
+    <%= link_to "Show this attendee", @attendee %> |
+    <%= link_to "Back to attendees", attendees_path %>
+  </div>
+<% end %>
+
+
+<% if attendee_signed_in? %>
+  <div>
+    <%= link_to "back to main page", @attendee %> |
+  </div>
+<% end %>
+

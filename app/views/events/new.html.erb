@@ -1,6 +1,51 @@
-<h1>New event</h1>
+<h1>New Event</h1>
 
-<%= render "form", event: @event %>
+<%= form_with model: @event, url: events_path, method: :post do |form| %>
+  <div>
+    <%= form.label :name, "Event Name", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category, options_for_select(['Concerts', 'Sports', 'Arts & Theatre', 'Miscellaneous/Family', 'Private']), {}, {class: "form-control"} %>
+  </div>
+
+  <div>
+    <%= form.label :date, "Event Date", style: "display: block" %>
+    <%= form.date_field :date, value: session[:date] || @event.date%>
+  </div>
+
+  <div>
+    <%= form.label :start_time, "Start Time", style: "display: block" %>
+    <%= form.time_field :start_time, value: session[:start_time] || @event.start_time %>
+  </div>
+
+  <div>
+    <%= form.label :end_time, "End Time", style: "display: block" %>
+    <%= form.time_field :end_time, value: session[:end_time] || @event.end_time %>
+  </div>
+
+  <% if @available_rooms.present? %>
+    <div>
+      <%= form.label :room_id, "Select Available Room", style: "display: block" %>
+      <%= form.collection_select :room_id, @available_rooms, :id, :address, include_blank: true %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :ticket_price, style: "display: block" %>
+    <%= form.text_field :ticket_price %>
+  </div>
+
+  <div>
+    <%= form.submit "Check Available Rooms", name: 'check_rooms' %>
+    <%= form.submit "Create Event", name: 'create_event', id: 'create-event-form' %>
+  </div>
+<% end %>
+
+<%#= render "form", event: @event %>
+
 
 <br>
 
