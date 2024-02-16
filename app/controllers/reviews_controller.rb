@@ -39,7 +39,17 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     # For attendees, force the attendee_id to be the current attendee's id
-    @review.attendee_id = current_attendee.id if attendee_signed_in?
+    # @review.attendee_id = current_attendee.id if attendee_signed_in?
+
+    # For attendees
+    if attendee_signed_in?
+      @review.attendee_id = current_attendee.id
+      # For admins
+    elsif admin_signed_in?
+      @review.admin_id = current_admin.id
+      # Optionally, clear the attendee_id if you're allowing reviews to be exclusively from either an attendee or an admin
+      # @review.attendee_id = nil
+    end
     respond_to do |format|
       if @review.save
         format.html { redirect_to review_url(@review), notice: "Review was successfully created." }

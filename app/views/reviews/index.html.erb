@@ -36,9 +36,10 @@
     <div>
       <!-- Display the name of the attendee  -->
       <% if attendee_signed_in? %>
-        <strong>Attendee:</strong> <%= review.attendee.email %><br>
+        <strong>Attendee:</strong> <%= review.attendee&.name || review.admin&.name %><br>
+      <!-- Make it so admin can admin reviews can be seen too.-->
       <% elsif admin_signed_in? %>
-        <strong>Attendee:</strong> <%= review.attendee.name %><br>
+        <strong>Attendee:</strong> <%= review.attendee&.name || review.admin&.name %><br>
       <% end %>
       <!-- Display the name of the event  -->
       <strong>Event:</strong> <%= review.event.name %><br>

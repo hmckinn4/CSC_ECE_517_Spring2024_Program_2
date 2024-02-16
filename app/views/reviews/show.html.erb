@@ -4,7 +4,7 @@
   <% if attendee_signed_in? %>
     <strong>Attendee:</strong> <%= @review.attendee.email %><br>
   <% elsif admin_signed_in? %>
-    <strong>Attendee:</strong> <%= @review.attendee.name %><br>
+    <strong>Attendee:</strong> <%= @review.admin.name %><br>
   <% end %>
   <strong>Event:</strong> <%= @review.event.name %><br>
   <strong>Rating:</strong> <%= @review.rating %><br>

@@ -1,5 +1,11 @@
 <h1>New Event</h1>
 
+<p style="font-style: italic;">
+  To create an event, a room must exist.
+  If no rooms currently exist, create one first prior to creating an event.
+</p>
+
+
 <%= form_with model: @event, url: events_path, method: :post do |form| %>
   <div>
     <%= form.label :name, "Event Name", style: "display: block" %>
