@@ -1,9 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <div>
-  <% if attendee_signed_in? %>
-    <strong>Attendee:</strong> <%= @review.attendee.email %><br>
-  <% elsif admin_signed_in? %>
+  <% if @review.admin == nil %>
+    <strong>Attendee:</strong> <%= @review.attendee.name %><br>
+  <% else @review.attendee == nil %>
     <strong>Attendee:</strong> <%= @review.admin.name %><br>
   <% end %>
   <strong>Event:</strong> <%= @review.event.name %><br>
@@ -11,12 +11,22 @@
   <strong>Feedback:</strong> <%= @review.feedback %>
 </div>
 
+
 <div>
-  <% if admin_signed_in? or @review.attendee_id == current_attendee.id%>
+  <% if admin_signed_in? || @review.attendee_id == current_attendee.id%>
   <div>
-    <%= link_to "Edit this review", edit_review_path(@review) %>
     <%= button_to "Destroy this review", @review, method: :delete %>
   </div>
+  <% end %>
+  <% if admin_signed_in? and @review.admin_id == current_admin.id%>
+    <div>
+      <%= link_to "Edit this review", edit_review_path(@review) %>
+    </div>
+  <% end %>
+  <% if attendee_signed_in? and  @review.attendee_id == current_attendee.id%>
+    <div>
+      <%= link_to "Edit this review", edit_review_path(@review) %>
+    </div>
   <% end %>
   <%= link_to "Back to reviews", reviews_path %>
 </div>

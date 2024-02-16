@@ -14,8 +14,8 @@
   <% if admin_signed_in? %>
     <!-- Admin can select any attendee -->
     <div>
-      <%= form.label :attendee_id, style: "display: block" %>
-      <%= form.collection_select :attendee_id, Attendee.all, :id, :name, {}, { class: "form-control" } %>
+      <%= form.label :admin_id, style: "display: block" %>
+      <%= form.collection_select :admin_id, Admin.all, :id, :name, {}, { class: "form-control" } %>
     </div>
   <% elsif attendee_signed_in? %>
     <!-- Attendee can only create a review for themselves -->
