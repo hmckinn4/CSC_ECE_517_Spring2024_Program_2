@@ -13,7 +13,8 @@ Admin is preconfigured with the following attributes:
 * Password: admin123
 
 ## User Guide
-* CAUTION when deleting/destroying, there is no warning so if the button is clicked it will delete the instance.
+### CAUTION when deleting/destroying, there is no warning so if destroy button is clicked it will IMMEDIATELY delete the instance.
+
 Admin capabilities:
 
 * Log in with an email and password
@@ -109,29 +110,55 @@ Admin capabilities:
 
 Attendee capabilities:
 
-- [x] Sign up for a new account with an email, name, and password
-- [x] Log in with an email and password.
-- [x] Edit their own profile (should not be able to update their ID).
-- [x] Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
-- [x] View all available events in the system. Conditions apply:
-  - Only upcoming events are visible.
-  - Only events which are not sold out are visible.
-  - Filter events by category, date, and price (~ price range).
-  - Search events by Event Name.
-- [x] Book an event ticket.
-- [x] Check their own event booking history, displaying at least the Event Name and Date.
-- [x] Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
-- [x] Edit their own reviews.
+* Sign up for a new account with an email, name, and password
+  - Click "Not yet an attendee?" -> fill in required fields
+  
+* Log in with an email and password.
+  - Click "Attendee login" -> enter credentials
+  
+* Edit their own profile (should not be able to update their ID).
+  - To edit password, on main page, click link on the right that says "change password"
+  - To edit other aspects of profile, click link on the right that says "Edit profile"
+  
+* Delete their own account. All dependencies, such as tickets booked or reviews written, should be deleted.
+  - To delete account, on main page, click link on the right that says "delete your account".
+  - All dependencies, such as tickets booked or reviews written, will also be deleted.
+  
+* View all available events in the system. Conditions apply:
+  * Only upcoming events are visible.
+  * Only events which are not sold out are visible.
+  * Filter events by category, date, and price (~ price range).
+  * Search events by Event Name.
+- From attendee home page under Events click "view events"
+- A filter will appear. Utilize it and once you have selected all criteria you desire, click "Apply Filters".
+- Everytime you click "Apply filters" all the criteria in the filters will be applied.
 
-- [x] List reviews written by a specific user (with the Email of the user).
-* Filter done, works for admin, however, email not displayed. Instructions allude to admin having
-* only name while attendee showing name and email.
 
-- [x] List reviews written for a specific event (with Event Name).
-- [x] Cancel a ticket, which implies that the event's available seats will be updated accordingly.
-  ( This not refers to "book an event ticket: no credit card is utilized and no
-  charge is made so it's kind of a loophole in reference to the rubric. Just
-  something we should confirm.)
+
+* Book an event ticket.
+  - Events -> navigate to desired event "view this event" -> Click "Book this event"
+  
+* Check their own event booking history, displaying at least the Event Name and Date.
+  - Main page under Tickets -> click "Booked Events"
+  
+* Write reviews for events they attended, limited to Concerts, Sports, and Arts & Theatre categories. Reviews can be posted only after the event ends.
+  - Reviews click "add new review" -> Under "Event" select the event you wish to review, (only events that 
+  - you've already attended will appear) Write the review and click "Create Review"
+
+* Edit their own reviews.
+  - Reviews click "manage reviews" -> Filter attendee to find yourself, or scroll to see your review.
+  - Click "Show this review" -> choose to edit or destroy the review.
+
+* List reviews written by a specific user (with the Email of the user).
+  - Reviews click "manage reviews" -> Filter attendee to find desired user email -> click "Filter Reviews"
+
+* List reviews written for a specific event (with Event Name).
+  - Reviews click "manage reviews" -> Filter events to find desired event -> click "Filter Reviews"
+  
+* Cancel a ticket, which implies that the event's available seats will be updated accordingly.
+  - Under tickets click "booked tickets" -> locate desired ticket and click "view ticket" -> to delete click "delete reservation"
+  - One seat will be added back to the event. You can confirm by going to events under and viewing the number
+  - of seats in that event and comparing before to after the cancellation. (Same applies to purchasing).
 
 
 (Attendees have the privilege to manage their own data and interact with event listings and reviews within specified boundaries to ensure a user-friendly and efficient experience within the WolfEvents Event Management System.)
@@ -139,7 +166,7 @@ Attendee capabilities:
 ### Bonus (Extra Credit)
 - [ ] Implement a search function for the admin to use. The input is the event name; the search result is a list of attendees who booked this event.
 - [x] Implement a function to allow an attendee to buy a ticket for another attendee (the ticket can be viewed by both the user who pays for the ticket and the user who receives the ticket).
-  Right now an admin can do this, but not attendee
+ 
 
 
 
