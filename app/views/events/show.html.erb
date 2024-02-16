@@ -8,7 +8,7 @@
     <p>
       <%= button_to "Destroy this event", @event, method: :delete %>
     <p>
-      <%= button_to "Booking form (self or attendee)", event_tickets_path(@event), method: :post  %>
+      <%= button_to "Book ticket for self", event_tickets_path(@event), method: :post  %>
 <% end %>
 </div>
 <br>

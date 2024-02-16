@@ -2,6 +2,8 @@
 
 <h1>Event tickets</h1>
 
+<%= link_to "New ticket for attendee", new_event_ticket_path %>
+
 <div id="event_tickets">
   <% @event_tickets.each do |event_ticket| %>
     <%= render event_ticket %>
@@ -11,4 +13,4 @@
   <% end %>
 </div>
 
-<%= link_to "New event ticket", new_event_ticket_path %>
+
