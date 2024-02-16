@@ -70,12 +70,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_164045) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "attendee_id", null: false
+    t.integer "attendee_id"
     t.integer "event_id", null: false
+    t.integer "admin_id"
     t.integer "rating"
     t.text "feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_reviews_on_admin_id"
     t.index ["attendee_id"], name: "index_reviews_on_attendee_id"
     t.index ["event_id"], name: "index_reviews_on_event_id"
   end
@@ -92,6 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_06_164045) do
   add_foreign_key "event_tickets", "events"
   add_foreign_key "event_tickets", "rooms"
   add_foreign_key "events", "rooms"
+  add_foreign_key "reviews", "admins"
   add_foreign_key "reviews", "attendees"
   add_foreign_key "reviews", "events"
 end

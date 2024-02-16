@@ -27,6 +27,12 @@
   <%= link_to "add new attendee", new_attendee_path %>
 </div>
 
+<div class = "room-link">
+  <h2>Rooms</h2>
+  <%= link_to "manage rooms", rooms_path %>
+  <%= link_to "add new room", new_room_path %>
+</div>
+
 <div class = "event-link">
   <h2>Events</h2>
   <%= link_to "manage events", events_path %>
@@ -56,8 +62,8 @@
 <div class = "ticket-link">
   <h2>Tickets</h2>
   <%= link_to "manage tickets", event_tickets_path %>
-  <%= link_to "add new ticket", new_event_ticket_path %>
-  <%#= link_to "book ticket for attendee", event_tickets_path %>
+  <%= link_to "book new ticket for attendee", new_event_ticket_path %>
+
 </div>
 
 <div class = "review-link">
@@ -70,8 +76,4 @@
   <%= link_to "add new review", new_review_path %>
 </div>
 
-<div class = "room-link">
-  <h2>Rooms</h2>
-  <%= link_to "manage rooms", rooms_path %>
-  <%= link_to "add new room", new_room_path %>
-</div>
+

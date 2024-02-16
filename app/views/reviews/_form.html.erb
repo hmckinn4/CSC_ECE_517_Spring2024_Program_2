@@ -26,12 +26,19 @@
       </p>
     </div>
   <% end %>
-
+  <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
   <div>
-    <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
     <%= form.label :event_id, "Event:", style: "display: block" %>
-    <%= form.collection_select :event_id,  current_attendee.events.where('date < ? OR (date = ? AND end_time < ?)', Date.today, Date.today, Time.zone.now).distinct, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
+    <% if admin_signed_in? %>
+      <!-- For admins, show all events or a filtered list of events they are allowed to review -->
+      <%= form.collection_select :event_id, Event.all.order(:date, :name), :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
+    <% elsif attendee_signed_in? %>
+      <!-- Next step is to make this a review THEY MUST HAVE ATTENDED! -->
+      <%= form.collection_select :event_id, current_attendee.events.where('date < ? OR (date = ? AND end_time < ?)', Date.today, Date.today, Time.zone.now).distinct, :id, :name, { prompt: "Select an Event" }, { class: "form-control" } %>
+    <% end %>
   </div>
+
+
 
   <div>
     <%= form.label :rating, style: "display: block" %>
