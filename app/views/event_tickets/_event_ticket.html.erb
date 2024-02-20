@@ -1,12 +1,32 @@
 <div id="<%= dom_id event_ticket %>">
-  <p>
-    <strong>Belongs to:</strong>
-    <% if event_ticket.attendee.present? %>
+<!--  <p>-->
+<!--    <strong>Belongs to:</strong>-->
+    <%# if event_ticket.attendee.present? %>
+      <%#= event_ticket.attendee.name %>
+    <%# else %>
+      <%#= event_ticket.admin.name %>
+    <%# end %>
+<!--  </p>-->
+
+  <% if event_ticket.attendee.present? %>
+    <p>
+      <strong>Belongs to:</strong>
       <%= event_ticket.attendee.name %>
-    <% else %>
+    </p>
+    <p>
+      <strong>Attendee id:</strong>
+      <%= event_ticket.attendee.id %>
+    </p>
+  <% else %>
+    <p>
+      <strong>Belongs to:</strong>
       <%= event_ticket.admin.name %>
-    <% end %>
-  </p>
+    </p>
+    <p>
+      <strong>Admin id:</strong>
+      <%= event_ticket.admin.id %>
+    </p>
+  <% end %>
 
   <p>
     <strong>Event:</strong>

@@ -1,6 +1,13 @@
 class ReviewsController < ApplicationController
+  before_action :user_login!
   before_action :set_review, only: %i[ show edit update destroy ]
 
+
+  def user_login!
+    unless admin_signed_in? or attendee_signed_in?
+      redirect_to root_path, alert: "Please login first"
+    end
+  end
   # GET /reviews or /reviews.json
   def index
     # Start with all reviews

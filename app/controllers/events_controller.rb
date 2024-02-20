@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
   before_action :delete_session, only: %i[ show destroy index]
+  before_action :authorization_admin_only, only: %i[ new edit update destroy ]
 
 
   # GET /events or /events.json
@@ -26,6 +27,11 @@ class EventsController < ApplicationController
 
   end
 
+  def authorization_admin_only
+    unless admin_signed_in?
+      redirect_to root_path, alert: "Only admin can access this page."
+    end
+  end
 
 
 def delete_session
