@@ -1,5 +1,6 @@
 <h1>New Event</h1>
-
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
 <p style="font-style: italic;">
   To create an event, a room must exist.
   If no rooms currently exist, create one first prior to creating an event.
@@ -43,6 +44,12 @@
     <%= form.label :ticket_price, style: "display: block" %>
     <%= form.text_field :ticket_price %>
   </div>
+
+  <div>
+    <%= form.label :seats_left, style: "display: block" %>
+    <%= form.number_field :seats_left,  min: 0, class: "form-control" %>
+  </div>
+
 
   <div>
     <%= form.submit "Check Available Rooms", name: 'check_rooms' %>

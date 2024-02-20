@@ -11,6 +11,11 @@
     </div>
   <% end %>
   <div>
+    <%= form.label :id, style: "display: block"%>
+    <%= form.text_field :id, class: "uneditable-input", :disabled => admin.persisted? %>
+  </div>
+
+  <div>
     <%= form.label :email, style: "display: block"%>
     <%= form.text_field :email, class: "uneditable-input", :disabled => admin.persisted? %>
   </div>

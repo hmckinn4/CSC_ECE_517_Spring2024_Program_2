@@ -1,6 +1,14 @@
 class EventTicketsController < ApplicationController
   before_action :set_event_ticket, only: %i[ show edit update destroy ]
   before_action :user_login!
+  before_action :authorization_admin_only, only: [:index]
+
+
+  def authorization_admin_only
+    unless admin_signed_in?
+      redirect_to root_path, alert: "Only admin can access this page."
+    end
+  end
 
 
   # GET /event_tickets or /event_tickets.json
@@ -38,7 +46,7 @@ class EventTicketsController < ApplicationController
       @event_ticket.event_id = params[:event_ticket][:event_id]
       @event = Event.find(params[:event_ticket][:event_id])
       @event_ticket.attendee_id = params[:event_ticket][:attendee_id]
-      @event_ticket.confirmation_number = params[:event_ticket][:confirmation_number]
+      @event_ticket.confirmation_number = SecureRandom.hex(15)
       @event_ticket.room_id = @event.room_id
     else
       @event_ticket = EventTicket.new
@@ -53,12 +61,14 @@ class EventTicketsController < ApplicationController
       end
       @event_ticket.confirmation_number = SecureRandom.hex(15)
     end
-    print("Look here!!!!!!!!!\n\n")
-    print("admin id\n")
-    print(@event_ticket.admin_id, "\n")
-    print(@event_ticket.room_id, "\n")
-    print(@event_ticket.event_id, "\n")
-    print(@event_ticket.confirmation_number, "\n")
+    if @event.date < Date.today || (@event.date == Date.today && @event.start_time < Time.now)
+      redirect_to @event, notice: 'Event has already passed.'
+      return
+    end
+    if @event.seats_left <= 0
+      redirect_to @event, notice: 'Event has no seat left.'
+      return
+    end
 
     if @event_ticket.save
       @event.minus_seats_left

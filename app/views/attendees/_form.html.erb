@@ -17,10 +17,13 @@
   </div>
 
 <!--   Todo: Maybe remove this since it has no impact-->
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
-  </div>
+  <% unless attendee_signed_in? %>
+    <div>
+      <%= form.label :password, style: "display: block" %>
+      <%= form.text_field :password %>
+    </div>
+  <% end %>
+
 
   <div>
     <%= form.label :name, style: "display: block" %>

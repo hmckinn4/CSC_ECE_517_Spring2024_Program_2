@@ -1,12 +1,27 @@
-<h1>Search Results</h1>
-puts "Search attendees hit"
+<h1>Search Results for <%= @event_name %></h1>
 
-<%# if @attendees.any? %>
-<!--  <ul>-->
-    <%# @attendees.each do |attendee| %>
-<!--      <li><%#= attendee.name %> - <%#= attendee.email %></li>-->
-    <%# end %>
-<!--  </ul>-->
-<%# else %>
-<!--  <p>No attendees found for this event.</p>-->
-<%# end %>
+<% if @event_tickets.any? %>
+  <ul>
+    <% @event_tickets.each do |event_ticket| %>
+      <% if event_ticket.attendee.present? %>
+        <% attendee = event_ticket.attendee %>
+        <%= render attendee %>
+        <p>
+          <strong>Confirmation number</strong>
+          <%= event_ticket.confirmation_number %>
+        </p>
+      <% end %>
+      <% if event_ticket.admin.present? %>
+        <% admin = event_ticket.admin %>
+        <%= render admin %>
+        <p>
+          <strong>Confirmation number</strong>
+          <%= event_ticket.confirmation_number %>
+        </p>
+      <% end %>
+      <br/>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No attendees found for this event.</p>
+<% end %>

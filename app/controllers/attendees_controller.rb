@@ -1,5 +1,6 @@
 class AttendeesController < ApplicationController
   before_action :set_attendee, only: %i[ show edit update destroy ]
+  before_action :authorization_admin_only, only: [:index]
 
   # GET /attendees or /attendees.json
   def index
@@ -65,7 +66,15 @@ class AttendeesController < ApplicationController
   def booked_events
     @attendee = Attendee.find(params[:id])
     @events = @attendee.events
-    @event_tickets =@attendee.event_tickets
+    @event_tickets = @attendee.event_tickets
+  end
+
+  private
+
+  def authorization_admin_only
+    unless admin_signed_in?
+      redirect_to root_path, alert: "Only admin can access this page."
+    end
   end
 
   private

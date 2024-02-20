@@ -1,7 +1,21 @@
 class RoomsController < ApplicationController
+  before_action :user_login!
   before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :authorization_admin_only, only: %i[ new edit update destroy ]
 
   # GET /rooms or /rooms.json
+  def authorization_admin_only
+    unless admin_signed_in?
+      redirect_to root_path, alert: "Only admin can access this page."
+    end
+  end
+
+  def user_login!
+    unless admin_signed_in? or attendee_signed_in?
+      redirect_to root_path, alert: "Please login first"
+    end
+  end
+
   def index
     @rooms = Room.all
   end
