@@ -26,18 +26,25 @@ class AdminsController < ApplicationController
   # Function that sear
   def search_attendees
     @event_names = Event.order(:name).pluck(:name).uniq
-    if params[:event_name].present?
+    @event_name = params[:event_name]
+
+    if params[:event_name].present? and params[:event_name] != "Select an event name"
       # Find the event by name
       event = Event.find_by(name: params[:event_name])
+      @attendees = event.attendees
+      @event_tickets = event.event_tickets
+      logger.info(@attendees)
       if event
         # Get all attendees for this event
-        @attendees = event.attendees_ids
+        @attendees = event.attendees
       else
         flash[:alert] = "Event not found"
+        redirect_to current_admin, alert: "Event not found"
         @attendees = []
       end
     else
       flash[:alert] = "Please enter an event name"
+      redirect_to current_admin, alert: "Please enter an event name"
       @attendees = []
     end
   end
