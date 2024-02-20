@@ -46,7 +46,7 @@ class EventTicketsController < ApplicationController
       @event_ticket.event_id = params[:event_ticket][:event_id]
       @event = Event.find(params[:event_ticket][:event_id])
       @event_ticket.attendee_id = params[:event_ticket][:attendee_id]
-      @event_ticket.confirmation_number = params[:event_ticket][:confirmation_number]
+      @event_ticket.confirmation_number = SecureRandom.hex(15)
       @event_ticket.room_id = @event.room_id
     else
       @event_ticket = EventTicket.new

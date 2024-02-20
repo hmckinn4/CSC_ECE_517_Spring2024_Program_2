@@ -76,6 +76,12 @@ end
 
   # POST /events or /events.json
   def create
+    required_params = params[:event].slice(:name, :date, :start_time, :end_time, :room_id, :seats_left)
+    if required_params.values.any?(&:blank?)
+      flash.now[:alert] = 'Please fill all the fields'
+      redirect_to new_event_path, alert: "Please fill all the fields."
+      return
+    end
     if params[:check_rooms]
       date = params[:event][:date]
       start_time = Time.parse(params[:event][:start_time])
@@ -88,7 +94,13 @@ end
     elsif params[:create_event]
       @event = Event.new(event_params)
       room = Room.find_by(id: @event.room_id)
-      @event.seats_left = room.capacity
+      seats_left = params[:event][:seats_left].to_i
+      if seats_left < 0 || seats_left > room.capacity
+        flash.now[:alert] = 'Invalid number of seats left.'
+        redirect_to new_event_path, alert: "Invalid number of seats left."
+        return
+      end
+      @event.seats_left = seats_left
       if @event.save
         session.delete(:date)
         session.delete(:start_time)
@@ -105,6 +117,12 @@ end
   # PATCH/PUT /events/1 or /events/1.json
   def update
     @event = Event.find(params[:id])
+    required_params = params[:event].slice(:name, :date, :start_time, :end_time, :room_id, :seats_left)
+    if required_params.values.any?(&:blank?)
+      flash.now[:alert] = 'Please fill all the fields'
+      redirect_to edit_event_path, alert: "Please fill all the fields."
+      return
+    end
     if params[:check_rooms_edit]
       print(params)
       date = params[:event][:date]
@@ -117,6 +135,14 @@ end
       @available_rooms = available_rooms_edit(date, start_time, end_time)
     else
       if @event.update(event_params)
+        room = Room.find_by(id: @event.room_id)
+        seats_left = params[:event][:seats_left].to_i
+        if seats_left < 0 || seats_left > room.capacity
+          flash.now[:alert] = 'Invalid number of seats left.'
+          redirect_to edit_event_path, alert: "Invalid number of seats left."
+          return
+        end
+        @event.seats_left = seats_left
         session.delete(:date)
         session.delete(:start_time)
         session.delete(:end_time)
@@ -206,6 +232,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.fetch(:event, {}).permit(:name, :category, :date, :start_time, :end_time, :ticket_price, :room_id)
+      params.fetch(:event, {}).permit(:name, :category, :date, :start_time, :end_time, :ticket_price, :room_id, :seats_left)
     end
 end
