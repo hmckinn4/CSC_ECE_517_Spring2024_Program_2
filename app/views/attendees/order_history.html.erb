@@ -1,0 +1,47 @@
+<% if @order_histories&.any? %>
+  <ul>
+    <% @order_histories.each do |order| %>
+      <p>
+        <strong>Buyer Name:</strong>
+        <%= @name  %>
+      </p>
+      <% if order.attendee.present? %>
+        <p>
+          <strong>Belongs to:</strong>
+          <%= order.attendee.name %>
+        </p>
+        <p>
+          <strong>Attendee id:</strong>
+          <%= order.attendee.id %>
+        </p>
+      <% else %>
+        <p>
+          <strong>Belongs to:</strong>
+          <%= order.admin.name %>
+        </p>
+        <p>
+          <strong>Admin id:</strong>
+          <%= order.admin.id %>
+        </p>
+      <% end %>
+
+      <p>
+        <strong>Event:</strong>
+        <%= order.event.name %>
+      </p>
+
+      <p>
+        <strong>Room:</strong>
+        <%= order.room.address %>
+      </p>
+
+      <p>
+        <strong>Confirmation number:</strong>
+        <%= order.confirmation_number %>
+      </p>
+      <br>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No orders found.</p>
+<% end %>

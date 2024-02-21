@@ -76,13 +76,14 @@ end
 
   # POST /events or /events.json
   def create
-    required_params = params[:event].slice(:name, :date, :start_time, :end_time, :room_id, :seats_left)
-    if required_params.values.any?(&:blank?)
-      flash.now[:alert] = 'Please fill all the fields'
-      redirect_to new_event_path, alert: "Please fill all the fields."
-      return
-    end
+
     if params[:check_rooms]
+      required_params = params[:event].slice( :date, :start_time, :end_time)
+      if required_params.values.any?(&:blank?)
+        flash.now[:alert] = 'Please fill date, start time, and end time'
+        redirect_to new_event_path, alert: 'Please fill date, start time, and end time'
+        return
+      end
       date = params[:event][:date]
       start_time = Time.parse(params[:event][:start_time])
       end_time = Time.parse(params[:event][:end_time])
@@ -92,6 +93,12 @@ end
       session[:check] = true
       @available_rooms = available_rooms(date, start_time, end_time)
     elsif params[:create_event]
+      required_params = params[:event].slice(:name, :date, :start_time, :end_time, :room_id, :seats_left)
+      if required_params.values.any?(&:blank?)
+        flash.now[:alert] = 'Please fill all the fields'
+        redirect_to new_event_path, alert: "Please fill all the fields."
+        return
+      end
       @event = Event.new(event_params)
       room = Room.find_by(id: @event.room_id)
       seats_left = params[:event][:seats_left].to_i

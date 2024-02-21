@@ -11,6 +11,7 @@
 </style>
 
 <p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
 
 <div class="header">
   <h1><%= @attendee.email %></h1>
@@ -48,6 +49,7 @@
     <%= link_to "view events", events_path %>
     <h2>Tickets</h2>
     <%= link_to "Booked events", booked_events_path(@attendee) %>
+    <%= link_to 'Order History', attendee_order_history_path %>
     <%= link_to "Buy tickets for others", new_event_ticket_path %>
     <h2>Reviews</h2>
     <%= link_to "manage reviews", reviews_path %>

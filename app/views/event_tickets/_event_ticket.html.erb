@@ -7,6 +7,17 @@
       <%#= event_ticket.admin.name %>
     <%# end %>
 <!--  </p>-->
+  <% if event_ticket.buyer_type == 'Attendee' %>
+    <p>
+      <strong>Buyer name:</strong>
+      <%= Attendee.find(event_ticket.buyer_id).name %>
+    </p>
+  <% else %>
+    <p>
+      <strong>Buyer name:</strong>
+      <%= Admin.find(event_ticket.buyer_id).name %>
+    </p>
+  <% end %>
 
   <% if event_ticket.attendee.present? %>
     <p>

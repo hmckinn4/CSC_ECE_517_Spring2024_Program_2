@@ -2,6 +2,17 @@
 
 <div id="booked_events">
   <% @event_tickets.each do |event_ticket| %>
+    <% if event_ticket.buyer_type == 'Attendee' %>
+      <p>
+        <strong>Buyer name:</strong>
+        <%= Attendee.find(event_ticket.buyer_id).name %>
+      </p>
+    <% else %>
+      <p>
+        <strong>Buyer name:</strong>
+        <%= Admin.find(event_ticket.buyer_id).name %>
+      </p>
+    <% end %>
     <p>
       <strong>Event name: </strong>
       <%= event_ticket.event.name %>
@@ -23,5 +34,6 @@
     <p>
       <%= link_to 'View ticket', event_ticket_path(event_ticket), method: :get %>
     </p>
+    <br>
   <% end %>
 </div>

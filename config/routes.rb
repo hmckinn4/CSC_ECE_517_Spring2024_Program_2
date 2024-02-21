@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   # Route for admin to search for attendees by event name. This maps a GET request to the search_attendees action in the AdminsController.
   get 'admin/search_attendees', to: 'admins#search_attendees', as: 'search_attendees'
 
+  get 'admins/:id/order_history', to: 'admins#order_history', as: 'admin_order_history'
+  get 'attendees/:id/order_history', to: 'attendees#order_history', as: 'attendee_order_history'
+
   # post 'events/available_rooms', to: 'events#available_rooms', as: 'available_rooms'
 
 end
