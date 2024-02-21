@@ -81,6 +81,11 @@ class AdminsController < ApplicationController
   # Should not be able to destroy the administrator
   end
 
+  def order_history
+    @order_histories = EventTicket.where(buyer: current_admin) || EventTicket.none
+    @name = current_admin.name
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin

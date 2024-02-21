@@ -1,6 +1,7 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: %i[ show edit update destroy ]
+  before_action :set_attendee, only: %i[ show edit update destroy  ]
   before_action :authorization_admin_only, only: [:index]
+  before_action :only_allow_current_attendee
 
   # GET /attendees or /attendees.json
   def index
@@ -10,6 +11,8 @@ class AttendeesController < ApplicationController
   # GET /attendees/1 or /attendees/1.json
   def show
   end
+
+
 
   # GET /attendees/new
   def new
@@ -69,6 +72,11 @@ class AttendeesController < ApplicationController
     @event_tickets = @attendee.event_tickets
   end
 
+  def order_history
+    @order_histories = EventTicket.where(buyer: current_attendee) || EventTicket.none
+    @name = current_attendee.name
+  end
+
   private
 
   def authorization_admin_only
@@ -82,6 +90,13 @@ class AttendeesController < ApplicationController
     def set_attendee
       @attendee = Attendee.find(params[:id])
     end
+
+  def only_allow_current_attendee
+    requested_attendee = Attendee.find(params[:id])
+    unless current_attendee == requested_attendee
+      redirect_to current_attendee, alert: "You are not authorized to view this page."
+    end
+  end
 
     # Only allow a list of trusted parameters through.
     def attendee_params

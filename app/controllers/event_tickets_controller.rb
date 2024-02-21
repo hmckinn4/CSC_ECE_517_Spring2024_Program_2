@@ -48,6 +48,11 @@ class EventTicketsController < ApplicationController
       @event_ticket.attendee_id = params[:event_ticket][:attendee_id]
       @event_ticket.confirmation_number = SecureRandom.hex(15)
       @event_ticket.room_id = @event.room_id
+      if admin_signed_in?
+        @event_ticket.buyer = current_admin
+      elsif attendee_signed_in?
+        @event_ticket.buyer = current_attendee
+      end
     else
       @event_ticket = EventTicket.new
       @event = Event.find(params[:format])
@@ -55,9 +60,11 @@ class EventTicketsController < ApplicationController
       @event_ticket.room_id = @event.room_id
       if attendee_signed_in?
         @event_ticket.attendee_id = current_attendee.id
+        @event_ticket.buyer = current_attendee
       elsif admin_signed_in?
         @event_ticket.admin_id = current_admin.id
         @event_ticket.attendee_id = nil
+        @event_ticket.buyer = current_admin
       end
       @event_ticket.confirmation_number = SecureRandom.hex(15)
     end
@@ -99,11 +106,20 @@ class EventTicketsController < ApplicationController
     @event_ticket.destroy
 
     respond_to do |format|
-      format.html { redirect_to event_tickets_url, notice: "Event ticket was successfully destroyed." }
+      format.html { redirect_to current_main_page, notice: "Event ticket was successfully destroyed." }
       format.json { head :no_content }
     end
 
     @event.add_seats_left
+  end
+
+  def current_main_page
+    if admin_signed_in?
+      current_admin
+    elsif attendee_signed_in?
+      current_attendee
+    else
+    end
   end
 
   private
