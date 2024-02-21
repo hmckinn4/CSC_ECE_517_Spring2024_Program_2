@@ -10,6 +10,14 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 end
 
+RSpec.configure do |config|
+  config.use_transactional_fixtures = true
+end
+
+RSpec.configure do |config|
+  # For Devise >= 4.1.1
+  config.include Devise::Test::ControllerHelpers, type: :controller
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
