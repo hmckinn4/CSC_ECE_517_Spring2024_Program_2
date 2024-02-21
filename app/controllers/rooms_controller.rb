@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :user_login!
   before_action :set_room, only: %i[ show edit update destroy ]
-  before_action :authorization_admin_only, only: %i[ new edit update destroy ]
+  before_action :authorization_admin_only, only: %i[ new edit update destroy index show]
 
   # GET /rooms or /rooms.json
   def authorization_admin_only

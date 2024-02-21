@@ -1,7 +1,8 @@
 class AttendeesController < ApplicationController
-  before_action :set_attendee, only: %i[ show edit update destroy  ]
+  before_action :set_attendee, only: %i[ show edit update destroy ]
   before_action :authorization_admin_only, only: [:index]
-  before_action :only_allow_current_attendee
+  before_action :only_allow_current_attendee, only: [:booked_events, :order_history, :edit]
+  before_action :check_access, only: [:new]
 
   # GET /attendees or /attendees.json
   def index
@@ -102,4 +103,17 @@ class AttendeesController < ApplicationController
     def attendee_params
       params.require(:attendee).permit(:email, :name, :phone_number, :address, :credit_card_info)
     end
+
+  # Define a method to check if the user is authorized to access the new action
+  def check_access
+    unless admin_or_unregistered?
+      flash[:alert] = "You are not authorized to access this page."
+      redirect_to root_path
+    end
+  end
+
+  # Helper method to determine if the user is an admin or not registered
+  def admin_or_unregistered?
+    current_attendee.nil? || admin_signed_in?
+  end
 end
