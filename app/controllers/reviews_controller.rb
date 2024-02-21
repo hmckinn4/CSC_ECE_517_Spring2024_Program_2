@@ -45,9 +45,6 @@ class ReviewsController < ApplicationController
   # POST /reviews or /reviews.json
   def create
     @review = Review.new(review_params)
-    # For attendees, force the attendee_id to be the current attendee's id
-    # @review.attendee_id = current_attendee.id if attendee_signed_in?
-
     # For attendees
     if attendee_signed_in?
       @review.attendee_id = current_attendee.id
