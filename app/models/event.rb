@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   validates :start_time, presence: true
-  validates :seats_left, presence: true, numericality: { greater_than_or_equal_to: 1 }
+  validates :seats_left, presence: true, numericality: { greater_than_or_equal_to: 0 }
   belongs_to :room
   # Added dependent: :destroy here so that if an event is deleted,
   # so is the associated ticket and review with that event.
