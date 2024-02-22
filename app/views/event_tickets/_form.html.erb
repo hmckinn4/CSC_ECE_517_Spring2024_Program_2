@@ -20,11 +20,6 @@
     <%= form.collection_select :event_id, Event.all, :id, :name, { prompt: "Select an event" }, { class: "form-control" } %>
   </div>
 
-<!--  <div>-->
-    <%#= form.label :confirmation_number, style: "display: block" %>
-    <%#= form.text_field :confirmation_number, value: SecureRandom.hex(10), readonly: true %>
-<!--  </div>-->
-
   <div>
     <%= form.submit %>
   </div>

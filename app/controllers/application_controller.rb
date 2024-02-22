@@ -28,8 +28,6 @@ class ApplicationController < ActionController::Base
 
     if user.is_a?(Admin)
       current_admin
-    # elsif user.is_a?(Attendee) && admin_signed_in?
-    #   current_admin
     elsif user.is_a?(Attendee)
       current_admin
     else

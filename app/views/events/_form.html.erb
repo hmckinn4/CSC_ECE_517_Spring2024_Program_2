@@ -50,8 +50,8 @@
 
   <div>
     <%= form.label :seats_left, style: "display: block" %>
-    Add validation so that
-    <%= form.number_field :seats_left,  min: 0, class: "form-control" %>
+    <!-- Add validation so that admin can make rooms left be 0-->
+    <%= form.number_field :seats_left,  min: 0, class: "form-control" %> Reference room capacity in rooms page if seats left is invalid.
   </div>
 
   <div>

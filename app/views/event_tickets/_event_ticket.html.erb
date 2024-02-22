@@ -1,12 +1,5 @@
 <div id="<%= dom_id event_ticket %>">
-<!--  <p>-->
-<!--    <strong>Belongs to:</strong>-->
-    <%# if event_ticket.attendee.present? %>
-      <%#= event_ticket.attendee.name %>
-    <%# else %>
-      <%#= event_ticket.admin.name %>
-    <%# end %>
-<!--  </p>-->
+
   <% if event_ticket.buyer_type == 'Attendee' %>
     <p>
       <strong>Buyer name:</strong>

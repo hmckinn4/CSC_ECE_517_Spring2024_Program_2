@@ -27,12 +27,15 @@ class Event < ApplicationRecord
   scope :filter_by_name, ->(name) { where('LOWER(name) = LOWER(?)', name) if name.present? }
 
 
-
+  # Method to ensure when an event is booked,
+  # 1 seat is subtracted from the event's total seat availability.
   def minus_seats_left
     self.seats_left -= 1
     save
   end
 
+  # Method to ensure when an event ticket is deleted,
+  # 1 seat is added from the event's total seat availability.
   def add_seats_left
     self.seats_left += 1
     save

@@ -4,6 +4,8 @@
 <p style="font-style: italic;">
   To create an event, a room must exist.
   If no rooms currently exist, create one first prior to creating an event.
+<p style="font-style: italic;">
+  After clicking "check available rooms", please re-enter event credentials, then click CREATE EVENT"
 </p>
 
 
@@ -14,25 +16,30 @@
   </div>
 
   <div>
+    <!-- Category dropdown-->
     <%= form.label :category, style: "display: block" %>
     <%= form.select :category, options_for_select(['Concerts', 'Sports', 'Arts & Theatre', 'Miscellaneous/Family', 'Private']), {}, {class: "form-control"} %>
   </div>
 
   <div>
+  <!-- Event date calendar-->
     <%= form.label :date, "Event Date", style: "display: block" %>
     <%= form.date_field :date, value: session[:date] || @event.date%>
   </div>
 
   <div>
+  <!-- Event start time selection-->
     <%= form.label :start_time, "Start Time", style: "display: block" %>
     <%= form.time_field :start_time, value: session[:start_time] || @event.start_time %>
   </div>
 
   <div>
+    <!-- Event end time selection-->
     <%= form.label :end_time, "End Time", style: "display: block" %>
     <%= form.time_field :end_time, value: session[:end_time] || @event.end_time %>
   </div>
 
+<!--  Double booking check presents user with choices of available rooms at that time.-->
   <% if @available_rooms.present? %>
     <div>
       <%= form.label :room_id, "Select Available Room", style: "display: block" %>
@@ -47,18 +54,16 @@
 
   <div>
     <%= form.label :seats_left, style: "display: block" %>
-    <%= form.number_field :seats_left,  min: 1, class: "form-control" %>
+    <%= form.number_field :seats_left,  min: 1, class: "form-control" %> Reference room capacity in rooms page if seats left is invalid.
   </div>
 
 
   <div>
+    <!-- Checks available rooms based on time and date to avoid double booking-->
     <%= form.submit "Check Available Rooms", name: 'check_rooms' %>
     <%= form.submit "Create Event", name: 'create_event', id: 'create-event-form' %>
   </div>
 <% end %>
-
-<%#= render "form", event: @event %>
-
 
 <br>
 
