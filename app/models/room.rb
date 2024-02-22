@@ -1,5 +1,6 @@
 class Room < ApplicationRecord
-  has_many :events
+  # Events must be destroyed if a room is destroyed.
+  has_many :events, dependent: :destroy
 
   # Add validations
   validates :address, presence: true
