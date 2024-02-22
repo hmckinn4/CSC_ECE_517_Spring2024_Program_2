@@ -50,7 +50,8 @@
 
   <div>
     <%= form.label :seats_left, style: "display: block" %>
-    <%= form.number_field :seats_left %>
+    Add validation so that
+    <%= form.number_field :seats_left,  min: 0, class: "form-control" %>
   </div>
 
   <div>
